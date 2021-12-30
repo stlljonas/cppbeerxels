@@ -12,9 +12,10 @@ class Cap {
 	cv::Point3_<int> averageColor;
 	// Cuts out image from sourceImagePath and saves it at cutOutImagePath;
 	cv::Mat getBottleCap();
+	cv::Mat cutOutBottleCap();
   private:
 	bool capHasBeenCutOut = false;
-	cv::Mat cutOutBottleCap();
+	
 	cv::Mat BottleCap;
 	int aperture = 3;
 	// circle size
