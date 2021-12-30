@@ -9,7 +9,7 @@ class Cap {
 	std::string sourceImagePath;
 	std::string cutOutImagePath;
 	cv::Mat sourceImage;
-	cv::Scalar averageColor; // is this the righty datatype?
+	cv::Point3_<int> averageColor;
 	// Cuts out image from sourceImagePath and saves it at cutOutImagePath;
 	cv::Mat getBottleCap();
   private:
