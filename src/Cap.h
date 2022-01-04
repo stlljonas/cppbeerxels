@@ -12,21 +12,25 @@ class Cap {
 	std::string cutOutImagePath;
 	cv::Mat sourceImage;
 	// Cuts out image from sourceImagePath and saves it at cutOutImagePath;
+	void analyze(); // calls all the private methods
 	cv::Mat getBottleCap();
-	// cv::Scalar getAverageColor();
+	cv::Scalar getAverageColor();
 	Cap() = default; 
 	Cap(const int blurAperture_, const int logLevel_ = 0) : blurAperture(blurAperture_), logLevel(logLevel_){};
 	// void showCircle();
   private:
-	Circle circle;
+	cv::Mat _bottleCap;
+	Circle _circle;
+	cv::Mat _mask;
+	cv::Scalar _averageColor;
   	void _detectCircle(cv::Mat image);
 	cv::Rect _circleRegionOfInterest(cv::Mat image);
-	cv::Mat BottleCap;
 	void _cutOutBottleCap();
+	void _computeAverageColor();
 	int blurAperture = 1;
 	// 0 = none, 1 = text, 2 = text & images
 	int logLevel = 0;
-	cv::Scalar averageColor;
+	
 };
 
 #endif /* _CAP_H_ */
