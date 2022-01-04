@@ -13,8 +13,8 @@ class Cap {
 	cv::Mat sourceImage;
 	// Cuts out image from sourceImagePath and saves it at cutOutImagePath;
 	void analyze(); // calls all the private methods
-	cv::Mat getBottleCap();
-	cv::Scalar getAverageColor();
+	cv::Mat getBottleCap() const;
+	cv::Scalar getAverageColor() const;
 	Cap() = default; 
 	Cap(const int blurAperture_, const int logLevel_ = 0) : blurAperture(blurAperture_), logLevel(logLevel_){};
 	// void showCircle();

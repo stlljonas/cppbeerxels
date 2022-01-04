@@ -6,11 +6,11 @@ void Cap::analyze() {
     // still need to save computation
 }
 
-cv::Mat Cap::getBottleCap() {
+cv::Mat Cap::getBottleCap() const {
     return _bottleCap;
 }
 
-cv::Scalar Cap::getAverageColor() {
+cv::Scalar Cap::getAverageColor() const {
     return _averageColor;
 }
 
