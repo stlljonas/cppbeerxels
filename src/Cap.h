@@ -16,7 +16,7 @@ class Cap {
 	cv::Mat getBottleCap() const;
 	cv::Scalar getAverageColor() const;
 	Cap() = default; 
-	Cap(const int blurAperture_, const int logLevel_ = 0) : blurAperture(blurAperture_), logLevel(logLevel_){};
+	Cap(std::string sourceImagePath_ , const int blurAperture_ = 7, const int logLevel_ = 0) : sourceImagePath(sourceImagePath_), blurAperture(blurAperture_), logLevel(logLevel_){};
 	// void showCircle();
   private:
 	cv::Mat _bottleCap;
@@ -27,7 +27,7 @@ class Cap {
 	cv::Rect _circleRegionOfInterest(cv::Mat image);
 	void _cutOutBottleCap();
 	void _computeAverageColor();
-	int blurAperture = 1;
+	int blurAperture = 7;
 	// 0 = none, 1 = text, 2 = text & images
 	int logLevel = 0;
 	
