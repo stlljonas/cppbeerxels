@@ -3,20 +3,21 @@
 
 #include<string>
 #include<opencv2/opencv.hpp>
+#include<filesystem>
 #include"Circle.h"
 #include"helpers.h"
 
 class Cap {
   public:	
-	std::string sourceImagePath;
-	std::string cutOutImagePath;
+	std::filesystem::path sourceImagePath;
+	std::filesystem::path cutOutImagePath;
 	cv::Mat sourceImage;
 	// Cuts out image from sourceImagePath and saves it at cutOutImagePath;
 	void analyze(); // calls all the private methods
 	cv::Mat getBottleCap() const;
 	cv::Scalar getAverageColor() const;
 	Cap() = default; 
-	Cap(std::string sourceImagePath_ , const int blurAperture_ = 7, const int logLevel_ = 0) : sourceImagePath(sourceImagePath_), blurAperture(blurAperture_), logLevel(logLevel_){};
+	Cap(std::filesystem::path sourceImagePath_ , const int blurAperture_ = 7, const int logLevel_ = 0) : sourceImagePath(sourceImagePath_), blurAperture(blurAperture_), logLevel(logLevel_){};
 	// void showCircle();
   private:
 	cv::Mat _bottleCap;

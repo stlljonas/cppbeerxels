@@ -21,8 +21,8 @@ void Cap::_detectCircle(cv::Mat image) {
     std::vector<cv::Vec3i> circlesInt = vectorOfVec3FloatToInt(circlesFloat);
     cv::Mat tempImage;
     image.copyTo(tempImage);
-    drawHoughCircles(tempImage, circlesInt);
-    popUpImage(tempImage);
+    // drawHoughCircles(tempImage, circlesInt);
+    // popUpImage(tempImage);
     // circlesInt is sorted by highest rating -> circlesInt[0] should be the most prominent circle detected
     _circle.center.x = circlesInt[0][0];
     _circle.center.y = circlesInt[0][1];
@@ -39,7 +39,7 @@ cv::Rect Cap::_circleRegionOfInterest(cv::Mat image) {
 
 void Cap::_cutOutBottleCap() {
     // Load image
-    cv::Mat sourceImage = cv::imread(sourceImagePath);
+    cv::Mat sourceImage = cv::imread(sourceImagePath.string());
     // Preprocess for circle detection
     double scalingFactor = 0.25;
     cv::Mat image;
@@ -53,7 +53,7 @@ void Cap::_cutOutBottleCap() {
     // Crop image to circle
     cv::Rect range = _circleRegionOfInterest(image);
     cv::Mat croppedImage = sourceImage(range);
-    popUpImage(croppedImage);
+    // popUpImage(croppedImage);
     
     // Create circular mask
     _mask = cv::Mat::zeros(croppedImage.rows,croppedImage.cols, CV_8U);
@@ -61,6 +61,10 @@ void Cap::_cutOutBottleCap() {
     
     // Apply mask / black out background
     croppedImage.copyTo(_bottleCap,_mask);
+    // Save cutout bottle cap
+    std::filesystem::path cutOutsName {"cutouts"};
+    cutOutImagePath = sourceImagePath.parent_path().parent_path() / cutOutsName / sourceImagePath.filename();
+    cv::imwrite(cutOutImagePath.string(),_bottleCap);
 
     popUpImage(_bottleCap);
 }
