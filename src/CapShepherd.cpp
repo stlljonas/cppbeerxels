@@ -12,7 +12,7 @@ void CapShepherd::init()
             std::cout << "Found file " << filenameStr << std::endl;
             std::unique_ptr<Cap> newCap(new Cap(path.u8string() + filenameStr));
             _caps.push_back(std::move(newCap));
-            _caps.back().get()->analyze();
+            _caps.back().get()->analyze(); // temp
         }
     }
     // iterate through _rawImagesPath directory
@@ -20,4 +20,10 @@ void CapShepherd::init()
         // push a new Cap with the corresponding path to 
         // _caps
     // done?
+}
+
+void CapShepherd::analyzeCaps() {
+    for (std::vector<std::unique_ptr<Cap>>::iterator it = _caps.begin(); it != _caps.end(); ++it) {
+        it->get()->analyze();
+    }
 }
