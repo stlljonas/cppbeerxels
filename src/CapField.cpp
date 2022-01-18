@@ -6,21 +6,27 @@
 void HoneyCombTiling::optimalTiling() {
     // find optimal radius
     //std::cout << "tiling" << std::endl;
-    int radius = 1;
-    size_t n = _findNumberOfNodes(radius);
+    //int radius = 1;
+    _radius = 1;
+    //size_t n = _findNumberOfNodes(radius);
     //std::cout << "number of nodes = " << n << std::endl << std::endl;
     //int a;
     //std::cin >> a; 
-    while (_findNumberOfNodes(radius) > _maxNumberOfNodes) {
-        ++radius;
+    while (_findNumberOfNodes(_radius) > _maxNumberOfNodes) {
+        ++_radius;
+        std::cout << "current radius: " << _radius << std::endl;
+        _nodes = _tile(_radius);
+        _centerNodes();
+        showNodes();
+        //std::cin >> n;
         //std::cout << "radius\n";
         //std::cout << "number of nodes = " << _findNumberOfNodes(radius) << std::endl << std::endl;
     };
-    _radius = radius;
-    //std::cout << "optimal radius = " << _radius << std::endl;
+    //_radius = radius;
+    std::cout << "optimal radius = " << _radius << std::endl;
 
     // tile with optimal radius
-    _nodes = _tile(_radius);
+    //_nodes = _tile(_radius);
     //std::cout << "first node = " << _nodes[0].x << ", " << _nodes[0].y << std::endl;
     //showNodes();
     _centerNodes();
@@ -60,6 +66,7 @@ int HoneyCombTiling::getRadius() {
 }
 
 std::vector<cv::Point> HoneyCombTiling::_tile(int radius) {
+    // std::cout << "tile\n";
     std::vector<cv::Point> nodes;
     float xCurr = static_cast<float>(radius); // x value of current node
     float yCurr = static_cast<float>(radius); // y value of current node
@@ -159,6 +166,14 @@ void HoneyCombTiling::showNodes() {
     cv::Mat canvas = cv::Mat::zeros(cv::Size(_referenceXDimension,_referenceYDimension),CV_8UC1);
     for (auto entry : _nodes) {
         cv::circle(canvas, entry, _radius,cv::Scalar(255, 255, 225));
+    }
+    popUpImage(canvas);
+}
+
+void HoneyCombTiling::showNodes(std::vector<cv::Point> nodes, int radius) {
+    cv::Mat canvas = cv::Mat::zeros(cv::Size(_referenceXDimension,_referenceYDimension),CV_8UC1);
+    for (auto entry : nodes) {
+        cv::circle(canvas, entry, radius,cv::Scalar(255, 255, 225));
     }
     popUpImage(canvas);
 }

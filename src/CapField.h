@@ -23,10 +23,14 @@ class HoneyCombTiling : public BeerxelTiling {
   public:
     HoneyCombTiling() = default;
     HoneyCombTiling(const int refXDim, const int refYdim, const int maxNumNodes) : _referenceXDimension(refXDim), _referenceYDimension(refYdim), _maxNumberOfNodes(maxNumNodes) {};
+    
     void optimalTiling() override;
     std::vector<cv::Point> getNodes() override;
     int getRadius() override;
+    
     void showNodes();
+    void showNodes(std::vector<cv::Point> nodes, int radius);
+
   private:
     std::vector<cv::Point> _tile(int radius);
     bool _circleIsInBound(int x, int y, int radius);
