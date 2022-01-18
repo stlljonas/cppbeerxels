@@ -16,6 +16,10 @@ public:
     void processCaps();
     // delete all computed images (keep raws)
     void purge();
+    // processReference();
+    // void placeCaps();
+    // void getPlacement;
+    // void showPlacement();
     // return _caps
     std::vector<std::unique_ptr<Cap>> getCaps();
 
