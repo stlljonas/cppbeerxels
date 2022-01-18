@@ -6,7 +6,7 @@
 #include<filesystem>
 #include"Circle.h"
 #include"helpers.h"
-
+#include "SmartCircle.h"
 
 class Cap {
   public:	
@@ -21,12 +21,10 @@ class Cap {
 	Cap(std::filesystem::path sourceImagePath_ , const int blurAperture_ = 7, const int logLevel_ = 0) : sourceImagePath(sourceImagePath_), blurAperture(blurAperture_), logLevel(logLevel_){};
 	// void showCircle();
   private:
+	SmartCircle _circle;
 	cv::Mat _bottleCap;
-	Circle _circle;
 	cv::Mat _mask;
 	cv::Scalar _averageColor;
-  	void _detectCircle(cv::Mat image);
-	cv::Rect _circleRegionOfInterest(cv::Mat image);
 	void _cutOutBottleCap();
 	void _computeAverageColor();
 	int blurAperture = 7;
