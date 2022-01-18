@@ -13,7 +13,7 @@ public:
     // find files, and initialize caps with correct paths in _caps
     void init();
     // call cap methods
-    void analyzeCaps();
+    void processCaps();
     // delete all computed images (keep raws)
     void purge();
     // return _caps
