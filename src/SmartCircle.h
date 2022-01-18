@@ -10,7 +10,6 @@ class SmartCircle {
     cv::Point getCenterPoint();
     void detectCircle(cv::Mat image);
     cv::Mat cutOutCircle(cv::Mat image);
-
   private:
     int _radius;
     cv::Point _centerPoint;
