@@ -1,5 +1,6 @@
 #include "CapShepherd.h"
 #include "helpers.h"
+#include "CapField.h"
 
 int main(){
     /*Cap cap(7);
@@ -10,6 +11,9 @@ int main(){
     popUpImage(averageColor);
     */
     std::string rawImgDirPath = "/home/jstolle/code/cppbeerxels/data/raw/";
-    CapShepherd shepherd(rawImgDirPath);
-    shepherd.init();
+    // CapShepherd shepherd(rawImgDirPath);
+    // shepherd.init();
+    HoneyCombTiling tiling(400,500,25);
+    tiling.optimalTiling();
+    //tiling.showNodes();
 }
