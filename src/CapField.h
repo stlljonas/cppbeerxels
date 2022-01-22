@@ -5,13 +5,6 @@
 #include <vector>
 #include<opencv2/opencv.hpp>
 
-struct Point {
-    Point() = default;
-    Point(int x_, int y_) : x(x_), y(y_){};
-    int x;
-    int y;
-};
-
 class BeerxelTiling {
   public:
     virtual void optimalTiling() = 0;
