@@ -1,7 +1,6 @@
-#include "CapField.h"
+#include "Tiling.h"
 #include <math.h>
 #include "helpers.h"
-#include <iostream>
 
 void HoneyCombTiling::optimalTiling() {
     // find optimal radius
