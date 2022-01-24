@@ -2,30 +2,25 @@
 #define _CAP_SHEPHERD_H_
 
 #include "Cap.h"
-#include <vector>
-#include <memory>
 #include <filesystem>
+#include <memory>
+#include <vector>
 
-class CapShepherd
-{
+class CapShepherd {
 public:
-    CapShepherd(std::string rawImagesDirectoryPath) : _rawImagesDirectoryPath(rawImagesDirectoryPath){};
-    // find files, and initialize caps with correct paths in _caps
-    void init();
-    // call cap methods
-    void processCaps();
-    // delete all computed images (keep raws)
-    void purge();
-    // processReference();
-    // void placeCaps();
-    // void getPlacement;
-    // void showPlacement();
-    // return _caps
-    std::vector<std::unique_ptr<Cap>> getCaps();
+  CapShepherd(std::filesystem::path bottleCapDirectoryPath_)
+      : _bottleCapDirectoryPath(bottleCapDirectoryPath_){};
+  // find files, and initialize caps with correct paths in _caps
+  void init();
+  // call cap methods
+  void processCaps();
+  // delete all computed images (keep raws)
+  void purge();
+  // void placeCaps(vector placement, target? (where to place them));
+  std::vector<std::unique_ptr<Cap>> caps;
 
 private:
-    std::string _rawImagesDirectoryPath;
-    std::vector<std::unique_ptr<Cap>> _caps;
+  const std::filesystem::path _bottleCapDirectoryPath;
 };
 
 #endif /* _CAP_SHEPHERD_H_ */
