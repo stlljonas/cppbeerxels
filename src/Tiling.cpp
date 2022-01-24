@@ -64,6 +64,16 @@ int HoneyCombTiling::getRadius() {
     return _radius;
 }
 
+void HoneyCombTiling::setDimensions(const int xDimension, const int yDimension) {
+    _referenceXDimension = xDimension;
+    _referenceYDimension = yDimension;
+}
+
+void HoneyCombTiling::setMaxNumNodes(const int maxNumNodes) {
+    _maxNumberOfNodes = maxNumNodes;
+}
+
+
 std::vector<cv::Point> HoneyCombTiling::_tile(int radius) {
     // std::cout << "tile\n";
     std::vector<cv::Point> nodes;

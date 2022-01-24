@@ -22,8 +22,10 @@ class HoneyCombTiling : public BeerxelTiling {
     
     void showNodes();
     void showNodes(std::vector<cv::Point> nodes, int radius);
+    void setDimensions(const int xDimension, const int yDimension);
+    void setMaxNumNodes(const int maxNumNodes);
 
-  private:
+      private:
     std::vector<cv::Point> _tile(int radius);
     bool _circleIsInBound(int x, int y, int radius);
     bool _circleIsInBound(float xFloat, float yFloat, int radius);
