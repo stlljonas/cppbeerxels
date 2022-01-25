@@ -22,6 +22,7 @@ private:
   int _blurAperture = 7;
   std::vector<cv::Vec3i> _Vec3i(const std::vector<cv::Vec3f> &floatVector);
   cv::Mat _computeMask();
+  cv::Mat _computeMask(cv::Mat image);
   cv::Rect _regionOfInterest();
 };
 
