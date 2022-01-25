@@ -10,3 +10,4 @@ file(GLOB SOURCES
 include_directories( ${OpenCV_INCLUDE_DIRS} )
 add_executable( cppbeerxels ${SOURCES} )
 target_link_libraries( cppbeerxels ${OpenCV_LIBS} )
+
