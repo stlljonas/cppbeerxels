@@ -14,6 +14,8 @@ public:
   cv::Mat cutOutCircle(cv::Mat image);
   cv::Scalar computeAverageColor(cv::Mat image);
   cv::Rect regionOfInterest();
+  cv::Mat computeMask();
+  cv::Mat computeMask(cv::Mat image);
 
 private:
   int _radius;
@@ -22,8 +24,6 @@ private:
   cv::Point _centerPoint;
   int _blurAperture = 7;
   std::vector<cv::Vec3i> _Vec3i(const std::vector<cv::Vec3f> &floatVector);
-  cv::Mat _computeMask();
-  cv::Mat _computeMask(cv::Mat image);
 };
 
 #endif /* _SMART_CIRCLE_H_ */

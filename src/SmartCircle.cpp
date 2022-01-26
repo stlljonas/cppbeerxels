@@ -27,15 +27,15 @@ void SmartCircle::detectCircle(cv::Mat rawImage) {
 cv::Mat SmartCircle::cutOutCircle(cv::Mat image) {
   // copy circle onto blank image
   cv::Mat isolatedImage;
-  image.copyTo(isolatedImage, _computeMask(image));
+  image.copyTo(isolatedImage, computeMask(image));
   // crop to redion of interest (of circle)
-  cv::Rect range = _regionOfInterest();
+  cv::Rect range = regionOfInterest();
   cv::Mat croppedImage = isolatedImage(range);
   return croppedImage;
 }
 
 cv::Scalar SmartCircle::computeAverageColor(cv::Mat image) {
-  return cv::mean(image, _computeMask(image));
+  return cv::mean(image, computeMask(image));
 }
 
 std::vector<cv::Vec3i>
@@ -47,15 +47,15 @@ SmartCircle::_Vec3i(const std::vector<cv::Vec3f> &floatVector) {
   return intVector;
 }
 
-cv::Mat SmartCircle::_computeMask() {
-  cv::Rect roi = _regionOfInterest();
+cv::Mat SmartCircle::computeMask() {
+  cv::Rect roi = regionOfInterest();
   cv::Mat mask = cv::Mat::zeros(roi.size(), CV_8U);
   cv::circle(mask, cv::Point(_radius, _radius), _radius, cv::Scalar::all(1),
              -1);
   return mask;
 }
 
-cv::Mat SmartCircle::_computeMask(cv::Mat image) {
+cv::Mat SmartCircle::computeMask(cv::Mat image) {
   cv::Mat mask = cv::Mat::zeros(image.size(), CV_8U);
   cv::circle(mask, _centerPoint, _radius, cv::Scalar::all(1), -1);
   return mask;
@@ -65,6 +65,6 @@ cv::Rect SmartCircle::regionOfInterest() {
   int &x = _centerPoint.x;
   int &y = _centerPoint.y;
   int &r = _radius;
-  cv::Rect boundingRect(x - r, y - r, r * 2, r * 2);
+  cv::Rect boundingRect(x - r, y - r, r * 2 + 1, r * 2 + 1);
   return boundingRect;
 }
