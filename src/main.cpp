@@ -4,13 +4,19 @@
 #include <iostream>
 
 int main() {
+  std::filesystem::path unprocessedReferencePath = 
+      "/home/jstolle/code/cppbeerxels/referece-image.jpg";
   std::filesystem::path referenceImageFilePath =
-      "/home/jstolle/code/cppbeerxels/data/refernece/656189624.805342.jpg";
+      "/home/jstolle/code/cppbeerxels/data/refernece/referece-image.jpg";
   std::filesystem::path bottleCapDirectoryPath =
       "/home/jstolle/code/cppbeerxels/data/raw/";
 
+  resizeImage(unprocessedReferencePath,referenceImageFilePath, 0.25);
+
   CapField field(referenceImageFilePath, bottleCapDirectoryPath);
-  field.runCapShepherd();
-  field.processReference();
-  field.computePlacement();
+  //field.runCapShepherd();
+
+  field.processReference(615);
+  //field.computePlacement();
+  field.showCircleField();
 }
