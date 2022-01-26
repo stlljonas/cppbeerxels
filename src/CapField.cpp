@@ -9,6 +9,8 @@ void CapField::runCapShepherd() {
   _capShepherd.processCaps();
 }
 
+// @param numberOfNodes optional upper limit of possible nodes.
+//  if not provided will be set equal to number of caps detected
 void CapField::processReference(uint numberOfNodes) {
   // load image
   cv::Mat image = cv::imread(_referenceImagePath.string());
