@@ -13,6 +13,7 @@ public:
   void detectCircle(cv::Mat image);
   cv::Mat cutOutCircle(cv::Mat image);
   cv::Scalar computeAverageColor(cv::Mat image);
+  cv::Rect regionOfInterest();
 
 private:
   int _radius;
@@ -23,7 +24,6 @@ private:
   std::vector<cv::Vec3i> _Vec3i(const std::vector<cv::Vec3f> &floatVector);
   cv::Mat _computeMask();
   cv::Mat _computeMask(cv::Mat image);
-  cv::Rect _regionOfInterest();
 };
 
 #endif /* _SMART_CIRCLE_H_ */

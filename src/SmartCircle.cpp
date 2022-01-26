@@ -61,7 +61,7 @@ cv::Mat SmartCircle::_computeMask(cv::Mat image) {
   return mask;
 }
 
-cv::Rect SmartCircle::_regionOfInterest() {
+cv::Rect SmartCircle::regionOfInterest() {
   int &x = _centerPoint.x;
   int &y = _centerPoint.y;
   int &r = _radius;
