@@ -46,6 +46,18 @@ void CapField::computePlacement() {
   std::cout << "\ncost: " << cost << std::endl;
 }
 
+void CapField::showCircleField() {
+  cv::Mat image = cv::imread(_referenceImagePath.string());
+  cv::Mat circleField;
+  for (auto& pCircle : _referenceCircles) {
+    SmartCircle circle = *pCircle.get();
+    cv::circle(circleField, circle.getCenterPoint(),
+    circle.getRadius(),
+    circle.computeAverageColor(image));
+  }
+  popUpImage(circleField);
+}
+
 std::vector<std::vector<double>> CapField::_computeCostMatrix() {
   std::cout << "computing cost matrix\n";
   cv::Mat image = cv::imread(_referenceImagePath.string());

@@ -27,7 +27,8 @@ public:
   // and
   // CapField::_referenceCircles::computeAverageColor()
   void computePlacement();
-  // void showPlacement();
+  void showCircleField();
+  // void showCapField();
 
 private:
   CapShepherd _capShepherd;
