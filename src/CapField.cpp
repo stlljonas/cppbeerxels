@@ -3,30 +3,33 @@
 #include <math.h>
 
 void CapField::runCapShepherd() {
-  // std::cout << "capfield init\n";
+  std::cout << "initializing capfield\n";
   _capShepherd.init();
-  // std::cout << "processcaps\n";
+  std::cout << "processing caps\n";
   _capShepherd.processCaps();
 }
 
 // @param numberOfNodes optional upper limit of possible nodes.
 //  if not provided will be set equal to number of caps detected
 void CapField::processReference(uint numberOfNodes) {
+  std::cout << "processing reference image\n";
   // load image
   cv::Mat image = cv::imread(_referenceImagePath.string());
   // get tiling
   _honeyCombTiling.setDimensions(image.cols,
                                  image.rows); // maybe use cv::Mat::dims?
+  std::cout << "target node number = ";
   if (numberOfNodes != 0) {
     _honeyCombTiling.setMaxNumNodes(numberOfNodes);
+    std::cout << numberOfNodes << std::endl;
   } else {
+    std::cout << _capShepherd.caps.size() <<std::endl;
     _honeyCombTiling.setMaxNumNodes(_capShepherd.caps.size());
   }
-  // std::cout << "optimal tiling\n";
   _honeyCombTiling.optimalTiling();
   int radius = _honeyCombTiling.getRadius();
   std::vector<cv::Point> optimalTiling = _honeyCombTiling.getNodes();
-  std::cout << "number of nodes = " << optimalTiling.size() << std::endl;
+  std::cout << "optimal nodes number = " << optimalTiling.size() << std::endl;
   // for every node in the optimal tiling, create a smartcircle at that position
   for (const auto point : optimalTiling) {
     // std::cout << "node\n";
@@ -36,7 +39,7 @@ void CapField::processReference(uint numberOfNodes) {
 }
 
 void CapField::computePlacement() {
-  std::cout << "start\n";
+  std::cout << "computing cap placement\n";
   std::vector<std::vector<double>> costMatrix = _computeCostMatrix();
   std::cout << "costMatrix size: " << costMatrix.size() << ", "
             << costMatrix[0].size() << std::endl;
@@ -48,13 +51,16 @@ void CapField::computePlacement() {
 
 void CapField::showCircleField() {
   cv::Mat image = cv::imread(_referenceImagePath.string());
-  cv::Mat circleField;
+  //std::cout << type2str(image.type()) << std::endl;
+  popUpImage(image);
+  cv::Mat circleField(image.size(),image.type(),{0,0,0});
   for (auto& pCircle : _referenceCircles) {
     SmartCircle circle = *pCircle.get();
     cv::circle(circleField, circle.getCenterPoint(),
     circle.getRadius(),
-    circle.computeAverageColor(image));
+    circle.computeAverageColor(image),-1);
   }
+  //std::cout << type2str(circleField.type()) << std::endl;
   popUpImage(circleField);
 }
 
