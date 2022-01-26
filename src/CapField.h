@@ -20,7 +20,7 @@ public:
   void runCapShepherd();
   // load reference, find optimal tiling,
   // create smart circles at tiling nodes
-  void processReference();
+  void processReference(uint numberOfNodes = 0);
   // calls munkres to find placement of caps
   // in field. More precisely, between
   // CapField::CapShepherd::_caps::getAverageColor()

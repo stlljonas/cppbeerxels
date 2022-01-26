@@ -9,13 +9,17 @@ void CapField::runCapShepherd() {
   _capShepherd.processCaps();
 }
 
-void CapField::processReference() {
+void CapField::processReference(uint numberOfNodes) {
   // load image
   cv::Mat image = cv::imread(_referenceImagePath.string());
   // get tiling
   _honeyCombTiling.setDimensions(image.cols,
                                  image.rows); // maybe use cv::Mat::dims?
-  _honeyCombTiling.setMaxNumNodes(_capShepherd.caps.size());
+  if (numberOfNodes != 0) {
+    _honeyCombTiling.setMaxNumNodes(numberOfNodes);
+  } else {
+    _honeyCombTiling.setMaxNumNodes(_capShepherd.caps.size());
+  }
   // std::cout << "optimal tiling\n";
   _honeyCombTiling.optimalTiling();
   int radius = _honeyCombTiling.getRadius();
