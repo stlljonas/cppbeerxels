@@ -14,9 +14,12 @@ int main() {
   resizeImage(unprocessedReferencePath, referenceImageFilePath, 0.25);
 
   CapField field(referenceImageFilePath, bottleCapDirectoryPath);
-  // field.runCapShepherd();
+  
+  field.runCapShepherd();
 
-  field.processReference(615);
-  // field.computePlacement();
+  //field.processReference(615);
+  field.processReference();
+  field.computePlacement();
   field.showCircleField();
+  field.showCapField();
 }

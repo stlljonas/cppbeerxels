@@ -15,6 +15,7 @@ void CapField::processReference(uint numberOfNodes) {
   std::cout << "processing reference image\n";
   // load image
   cv::Mat image = cv::imread(_referenceImagePath.string());
+  _referenceImageSize = image.size();
   // get tiling
   _honeyCombTiling.setDimensions(image.cols,
                                  image.rows); // maybe use cv::Mat::dims?
@@ -23,7 +24,7 @@ void CapField::processReference(uint numberOfNodes) {
     _honeyCombTiling.setMaxNumNodes(numberOfNodes);
     std::cout << numberOfNodes << std::endl;
   } else {
-    std::cout << _capShepherd.caps.size() << std::endl;
+    std::cout << _capShepherd.caps.size() <<std::endl;
     _honeyCombTiling.setMaxNumNodes(_capShepherd.caps.size());
   }
   _honeyCombTiling.optimalTiling();
@@ -32,7 +33,6 @@ void CapField::processReference(uint numberOfNodes) {
   std::cout << "optimal nodes number = " << optimalTiling.size() << std::endl;
   // for every node in the optimal tiling, create a smartcircle at that position
   for (const auto point : optimalTiling) {
-    // std::cout << "node\n";
     std::unique_ptr<SmartCircle> newCircle(new SmartCircle(point, radius));
     _referenceCircles.push_back(std::move(newCircle));
   }
@@ -51,16 +51,33 @@ void CapField::computePlacement() {
 
 void CapField::showCircleField() {
   cv::Mat image = cv::imread(_referenceImagePath.string());
-  // std::cout << type2str(image.type()) << std::endl;
-  popUpImage(image);
-  cv::Mat circleField(image.size(), image.type(), {0, 0, 0});
-  for (auto &pCircle : _referenceCircles) {
+  //popUpImage(image);
+  cv::Mat circleField(image.size(),image.type(),{0,0,0});
+  for (auto& pCircle : _referenceCircles) {
     SmartCircle circle = *pCircle.get();
-    cv::circle(circleField, circle.getCenterPoint(), circle.getRadius(),
-               circle.computeAverageColor(image), -1);
+    cv::circle(circleField, circle.getCenterPoint(),
+    circle.getRadius(),
+    circle.computeAverageColor(image),-1);
   }
-  // std::cout << type2str(circleField.type()) << std::endl;
   popUpImage(circleField);
+}
+
+void CapField::showCapField() {
+  cv::Mat capField(_referenceImageSize, CV_8UC3, {0,0,0});
+  for (int i = 0; i < _honeyCombTiling.getNodes().size(); ++i) {
+    SmartCircle referenceCircle = *_referenceCircles[_placement[i]].get();
+    cv::Mat bottleCap = _capShepherd.caps[i].get()->getBottleCap();
+    cv::Mat imageSection = capField(referenceCircle.regionOfInterest());
+    int r = referenceCircle.getRadius();
+    cv::Size size(2*r + 1,2*r + 1);
+    cv::Mat resizedBottleCap;
+    cv::resize(bottleCap,resizedBottleCap,size);
+    std::cout << imageSection.size() << std::endl;
+    std::cout << resizedBottleCap.size() << std::endl;
+    std::cout << referenceCircle.computeMask(imageSection).size() << std::endl;
+    resizedBottleCap.copyTo(imageSection,referenceCircle.computeMask());
+  }
+  popUpImage(capField);
 }
 
 std::vector<std::vector<double>> CapField::_computeCostMatrix() {
@@ -73,7 +90,6 @@ std::vector<std::vector<double>> CapField::_computeCostMatrix() {
                                               std::vector<double>(numCirc, 0));
   for (int i = 0; i < numCaps; ++i) {
     for (int j = 0; j < numCirc; ++j) {
-      // std::cout << "accessing cap/circle = " << i << "/" << j << std::endl;
       costMatrix[i][j] =
           _costFunction(_capShepherd.caps[i].get()->getAverageColor(),
                         _referenceCircles[j].get()->computeAverageColor(image));
