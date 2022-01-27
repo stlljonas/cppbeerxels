@@ -24,7 +24,7 @@ void CapField::processReference(uint numberOfNodes) {
     _honeyCombTiling.setMaxNumNodes(numberOfNodes);
     std::cout << numberOfNodes << std::endl;
   } else {
-    std::cout << _capShepherd.caps.size() <<std::endl;
+    std::cout << _capShepherd.caps.size() << std::endl;
     _honeyCombTiling.setMaxNumNodes(_capShepherd.caps.size());
   }
   _honeyCombTiling.optimalTiling();
@@ -51,31 +51,30 @@ void CapField::computePlacement() {
 
 cv::Mat CapField::computeCircleField() {
   cv::Mat image = cv::imread(_referenceImagePath.string());
-  //popUpImage(image);
-  cv::Mat circleField(image.size(),image.type(),{0,0,0});
-  for (auto& pCircle : _referenceCircles) {
+  // popUpImage(image);
+  cv::Mat circleField(image.size(), image.type(), {0, 0, 0});
+  for (auto &pCircle : _referenceCircles) {
     SmartCircle circle = *pCircle.get();
-    cv::circle(circleField, circle.getCenterPoint(),
-    circle.getRadius(),
-    circle.computeAverageColor(image),-1);
+    cv::circle(circleField, circle.getCenterPoint(), circle.getRadius(),
+               circle.computeAverageColor(image), -1);
   }
   return circleField;
 }
 
 cv::Mat CapField::computeCapField() {
-  cv::Mat capField(_referenceImageSize, CV_8UC3, {0,0,0});
+  cv::Mat capField(_referenceImageSize, CV_8UC3, {0, 0, 0});
   for (int i = 0; i < _honeyCombTiling.getNodes().size(); ++i) {
     SmartCircle referenceCircle = *_referenceCircles[_placement[i]].get();
     cv::Mat bottleCap = _capShepherd.caps[i].get()->getBottleCap();
     cv::Mat imageSection = capField(referenceCircle.regionOfInterest());
     int r = referenceCircle.getRadius();
-    cv::Size size(2*r + 1,2*r + 1);
+    cv::Size size(2 * r + 1, 2 * r + 1);
     cv::Mat resizedBottleCap;
-    cv::resize(bottleCap,resizedBottleCap,size);
+    cv::resize(bottleCap, resizedBottleCap, size);
     std::cout << imageSection.size() << std::endl;
     std::cout << resizedBottleCap.size() << std::endl;
     std::cout << referenceCircle.computeMask(imageSection).size() << std::endl;
-    resizedBottleCap.copyTo(imageSection,referenceCircle.computeMask());
+    resizedBottleCap.copyTo(imageSection, referenceCircle.computeMask());
   }
   return capField;
 }

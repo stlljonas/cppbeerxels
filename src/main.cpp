@@ -14,10 +14,10 @@ int main() {
   resizeImage(unprocessedReferencePath, referenceImageFilePath, 0.25);
 
   CapField field(referenceImageFilePath, bottleCapDirectoryPath);
-  
+
   field.runCapShepherd();
 
-  //field.processReference(615);
+  // field.processReference(615);
   field.processReference();
   field.computePlacement();
   cv::Mat circleField = field.computeCircleField();
