@@ -49,7 +49,7 @@ void CapField::computePlacement() {
   std::cout << "\ncost: " << cost << std::endl;
 }
 
-void CapField::showCircleField() {
+cv::Mat CapField::computeCircleField() {
   cv::Mat image = cv::imread(_referenceImagePath.string());
   //popUpImage(image);
   cv::Mat circleField(image.size(),image.type(),{0,0,0});
@@ -59,10 +59,10 @@ void CapField::showCircleField() {
     circle.getRadius(),
     circle.computeAverageColor(image),-1);
   }
-  popUpImage(circleField);
+  return circleField;
 }
 
-void CapField::showCapField() {
+cv::Mat CapField::computeCapField() {
   cv::Mat capField(_referenceImageSize, CV_8UC3, {0,0,0});
   for (int i = 0; i < _honeyCombTiling.getNodes().size(); ++i) {
     SmartCircle referenceCircle = *_referenceCircles[_placement[i]].get();
@@ -77,7 +77,7 @@ void CapField::showCapField() {
     std::cout << referenceCircle.computeMask(imageSection).size() << std::endl;
     resizedBottleCap.copyTo(imageSection,referenceCircle.computeMask());
   }
-  popUpImage(capField);
+  return capField;
 }
 
 std::vector<std::vector<double>> CapField::_computeCostMatrix() {

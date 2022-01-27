@@ -24,9 +24,9 @@ public:
   // calls munkres to find placement of caps in field
   void computePlacement();
   // show placement using average colors
-  void showCircleField();
+  cv::Mat computeCircleField();
   // show field using the actual caps
-  void showCapField();
+  cv::Mat computeCapField();
 
 private:
   CapShepherd _capShepherd;

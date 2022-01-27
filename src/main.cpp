@@ -20,6 +20,8 @@ int main() {
   //field.processReference(615);
   field.processReference();
   field.computePlacement();
-  field.showCircleField();
-  field.showCapField();
+  cv::Mat circleField = field.computeCircleField();
+  popUpImage(circleField);
+  cv::Mat capField = field.computeCapField();
+  popUpImage(capField);
 }
