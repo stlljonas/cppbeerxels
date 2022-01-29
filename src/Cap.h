@@ -26,6 +26,8 @@ private:
   cv::Mat _mask;
   cv::Scalar _averageColor;
   std::filesystem::path _sourceImagePath;
+  static uint _imageMaxDimension;
+  cv::Mat _uniformRescale(cv::Mat image);
   void _saveBottleCap(cv::Mat bottleCap);
   /*// 0 = none, 1 = text, 2 = text & images
   int logLevel = 0;*/
