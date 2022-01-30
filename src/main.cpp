@@ -10,6 +10,8 @@ int main() {
       "/home/jstolle/code/cppbeerxels/data/refernece/referece-image.jpg";
   std::filesystem::path bottleCapDirectoryPath =
       "/home/jstolle/code/cppbeerxels/data/raw/";
+  std::filesystem::path outputFilePath = 
+      "/home/jstolle/code/cppbeerxels/data/res.png";
 
   resizeImage(unprocessedReferencePath, referenceImageFilePath, 0.25);
 
@@ -20,8 +22,9 @@ int main() {
   // field.processReference(615);
   field.processReference();
   field.computePlacement();
-  cv::Mat circleField = field.computeCircleField();
-  popUpImage(circleField);
+  // cv::Mat circleField = field.computeCircleField();
+  // popUpImage(circleField);
   cv::Mat capField = field.computeCapField();
+  cv::imwrite(outputFilePath.string(), capField);
   popUpImage(capField);
 }
