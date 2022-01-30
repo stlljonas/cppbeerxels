@@ -61,8 +61,12 @@ cv::Mat CapField::computeCircleField() {
 
 cv::Mat CapField::computeCapField() {
   cv::Mat capField(_referenceImageSize, CV_8UC3, {0, 0, 0});
-  for (int i = 0; i < _honeyCombTiling.getNodes().size(); ++i) {
+  std::cout << _honeyCombTiling.getNodes().size() << std::endl;
+  const int numberOfCaps =_capShepherd.caps.size();
+  for (int i = 0; i < numberOfCaps; ++i) {
+    std::cout << "place cap " << i << std::endl;
     if (_placement[i] < 0) {
+      std::cout << "abort\n";
       continue;
     }
     SmartCircle referenceCircle = *_referenceCircles[_placement[i]].get();
@@ -73,6 +77,7 @@ cv::Mat CapField::computeCapField() {
     cv::Mat resizedBottleCap;
     cv::resize(bottleCap, resizedBottleCap, size);
     resizedBottleCap.copyTo(imageSection, referenceCircle.computeMask());
+    popUpImage(capField);
   }
   return capField;
 }
