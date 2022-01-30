@@ -19,9 +19,13 @@ void SmartCircle::detectCircle(cv::Mat rawImage) {
 
   // circlesInt is sorted by highest rating -> circlesInt[0] should be the most
   // prominent circle detected
-  _centerPoint.x = circlesInt[0][0];
-  _centerPoint.y = circlesInt[0][1];
-  _radius = circlesInt[0][2];
+  if (!circlesInt.empty()) {
+    _centerPoint.x = circlesInt[0][0];
+    _centerPoint.y = circlesInt[0][1];
+    _radius = circlesInt[0][2];
+  } else {
+    std::cout << "No circle detected!\n";
+  }
 }
 
 cv::Mat SmartCircle::cutOutCircle(cv::Mat image) {
