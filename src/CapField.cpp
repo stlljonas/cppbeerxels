@@ -1,6 +1,7 @@
 #include "CapField.h"
 #include <functional>
 #include <math.h>
+#include "Cerial.h"
 
 void CapField::runCapShepherd() {
   _capShepherd.init();
@@ -10,65 +11,92 @@ void CapField::runCapShepherd() {
 // @param numberOfNodes optional upper limit of possible nodes.
 //  if not provided will be set equal to number of caps detected
 void CapField::processReference(uint numberOfNodes) {
-  std::cout << "processing reference image\n";
+  Cerial::println("Processing reference image", NORMAL);
   // load image
   cv::Mat image = cv::imread(_referenceImagePath.string());
+  Cerial::showImage(image, NORMAL, 500);
   _referenceImageSize = image.size();
+  Cerial::println<cv::Size_<int>>(_referenceImageSize, DEBUG);
   // get tiling
   _honeyCombTiling.setDimensions(image.cols,
                                  image.rows); // maybe use cv::Mat::dims?
-  std::cout << "target node number = ";
+  Cerial::print("Target node number = ", VERBOSE);
   if (numberOfNodes != 0) {
     _honeyCombTiling.setMaxNumNodes(numberOfNodes);
-    std::cout << numberOfNodes << std::endl;
+    Cerial::println<uint>(numberOfNodes, VERBOSE);
   } else {
-    std::cout << _capShepherd.caps.size() << std::endl;
+    Cerial::println<uint>(_capShepherd.caps.size(), VERBOSE);
     _honeyCombTiling.setMaxNumNodes(_capShepherd.caps.size());
   }
   _honeyCombTiling.optimalTiling();
   int radius = _honeyCombTiling.getRadius();
   std::vector<cv::Point> optimalTiling = _honeyCombTiling.getNodes();
-  std::cout << "optimal nodes number = " << optimalTiling.size() << std::endl;
+  
   // for every node in the optimal tiling, create a smartcircle at that position
+  Cerial::println("Creating SmartCircles in node positions", DEBUG);
   for (const auto point : optimalTiling) {
+    Cerial::indicateProgress(DEBUG);
     std::unique_ptr<SmartCircle> newCircle(new SmartCircle(point, radius));
     _referenceCircles.push_back(std::move(newCircle));
   }
+  Cerial::endProgress(DEBUG);
 }
 
 void CapField::computePlacement() {
-  std::cout << "computing cap placement\n";
+  Cerial::println("Computing cap placement\n");
+
   std::vector<std::vector<double>> costMatrix = _computeCostMatrix();
-  std::cout << "costMatrix size: " << costMatrix.size() << ", "
-            << costMatrix[0].size() << std::endl;
+  
+  Cerial::print("costMatrix size: ", DEBUG);
+  Cerial::print<std::size_t>(costMatrix.size(), DEBUG);
+  Cerial::print(", ", DEBUG);
+  Cerial::println<std::size_t>(costMatrix[0].size(), DEBUG);
+
   double cost = _hungAlgo.Solve(costMatrix, _placement);
-  for (unsigned int x = 0; x < costMatrix.size(); x++)
-    std::cout << x << "," << _placement[x] << "\t";
-  std::cout << "\ncost: " << cost << std::endl;
+
+  for (unsigned int x = 0; x < costMatrix.size(); x++) {
+    Cerial::print<unsigned int>( x, VERBOSE);
+    Cerial::print( ",", VERBOSE);
+    Cerial::print<int>( _placement[x], VERBOSE);
+    Cerial::print( "\t", VERBOSE);
+  }
+  Cerial::println(VERBOSE);
+  Cerial::print("Cost: ", VERBOSE);
+  Cerial::println<double>(cost, VERBOSE);
 }
 
 cv::Mat CapField::computeCircleField() {
+
+  Cerial::println("Computing circle field");
+
   cv::Mat image = cv::imread(_referenceImagePath.string());
-  popUpImage(image);
   cv::Mat circleField(image.size(), image.type(), {0, 0, 0});
   for (auto &pCircle : _referenceCircles) {
+    Cerial::showImage(circleField,VERBOSE, 50);
     SmartCircle circle = *pCircle.get();
     cv::circle(circleField, circle.getCenterPoint(), circle.getRadius(),
                circle.computeAverageColor(image), -1);
   }
+  Cerial::showImage(circleField,NORMAL,500);
   return circleField;
 }
 
 cv::Mat CapField::computeCapField() {
+  Cerial::println("Computing cap field");
   cv::Mat capField(_referenceImageSize, CV_8UC3, {0, 0, 0});
-  std::cout << _honeyCombTiling.getNodes().size() << std::endl;
+
+  Cerial::showImage(capField, NORMAL, 200);  
   const int numberOfCaps =_capShepherd.caps.size();
   for (int i = 0; i < numberOfCaps; ++i) {
-    std::cout << "place cap " << i << std::endl;
+    Cerial::print("Placing cap  ", VERBOSE);
+    Cerial::print<int>(i,VERBOSE);
+    Cerial::print(" in position ", VERBOSE);
+    Cerial::print<int>(_placement[i],VERBOSE);
     if (_placement[i] < 0) {
-      std::cout << "abort\n";
+      Cerial::println(" .. abort",VERBOSE);
       continue;
     }
+    Cerial::println(VERBOSE);
     SmartCircle referenceCircle = *_referenceCircles[_placement[i]].get();
     cv::Mat bottleCap = _capShepherd.caps[i].get()->getBottleCap();
     cv::Mat imageSection = capField(referenceCircle.regionOfInterest());
@@ -77,17 +105,15 @@ cv::Mat CapField::computeCapField() {
     cv::Mat resizedBottleCap;
     cv::resize(bottleCap, resizedBottleCap, size);
     resizedBottleCap.copyTo(imageSection, referenceCircle.computeMask());
-    popUpImage(capField);
+    Cerial::showImage(capField, NORMAL, 50);
   }
   return capField;
 }
 
 std::vector<std::vector<double>> CapField::_computeCostMatrix() {
-  std::cout << "computing cost matrix\n";
   cv::Mat image = cv::imread(_referenceImagePath.string());
   size_t numCaps = _capShepherd.caps.size();
   size_t numCirc = _referenceCircles.size();
-  std::cout << "size costmatrix: " << numCaps << ", " << numCirc << std::endl;
   std::vector<std::vector<double>> costMatrix(numCaps,
                                               std::vector<double>(numCirc, 0));
   for (int i = 0; i < numCaps; ++i) {

@@ -1,4 +1,5 @@
 #include "Cap.h"
+#include "Cerial.h"
 
 void Cap::analyze() {
   cv::Mat image = cv::imread(_sourceImagePath.string());
@@ -7,7 +8,7 @@ void Cap::analyze() {
   _bottleCap = _circle.cutOutCircle(image);
   _averageColor = _circle.computeAverageColor(/*_bottleCap*/ image);
   //_bottleCap = _cutOutBottleCap(image);
-  popUpImage(_bottleCap);
+  Cerial::showImage(_bottleCap, NORMAL,100);
   _saveBottleCap(_bottleCap);
 }
 

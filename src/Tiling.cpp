@@ -1,8 +1,10 @@
 #include "Tiling.h"
 #include "helpers.h"
 #include <math.h>
+#include "Cerial.h"
 
 void HoneyCombTiling::optimalTiling() {
+  Cerial::println("Computing optimal tiling");
   // find optimal radius
   // std::cout << "tiling" << std::endl;
   // int radius = 1;
@@ -14,21 +16,27 @@ void HoneyCombTiling::optimalTiling() {
   while (_findNumberOfNodes(_radius) > _maxNumberOfNodes) {
     ++_radius;
     // std::cout << "current radius: " << _radius << std::endl;
+    Cerial::print("Current radius = ", DEBUG);
+    Cerial::println(_radius, DEBUG);
+    
     _nodes = _tile(_radius);
-    //_centerNodes();
-    // showNodes();
+    
+    _centerNodes();
+    Cerial::showImage(drawNodes(), VERBOSE, 20);
   };
   //_radius = radius;
-  std::cout << "optimal radius = " << _radius << std::endl;
-
+  //std::cout << "optimal radius = " << _radius << std::endl;
+  Cerial::print("Optimal nodes number = ", VERBOSE);
+  Cerial::println<std::size_t>(_nodes.size(), VERBOSE);
+  Cerial::print("Optimal radius = ", VERBOSE);
+  Cerial::println<std::size_t>(_radius, VERBOSE);
   // tile with optimal radius
   //_nodes = _tile(_radius);
   // std::cout << "first node = " << _nodes[0].x << ", " << _nodes[0].y <<
   // std::endl; showNodes();
-  _centerNodes();
   // std::cout << "first node = " << _nodes[0].x << ", " << _nodes[0].y <<
   // std::endl;
-  showNodes();
+  Cerial::showImage(drawNodes(),NORMAL, 500);
   /*
   // tabula rasa
   _nodes.clear();
@@ -171,22 +179,22 @@ bool HoneyCombTiling::_circleIsInBound(float xFloat, float yFloat, int radius) {
   }
 }
 
-void HoneyCombTiling::showNodes() {
+cv::Mat HoneyCombTiling::drawNodes() {
   cv::Mat canvas = cv::Mat::zeros(
       cv::Size(_referenceXDimension, _referenceYDimension), CV_8UC1);
   for (auto entry : _nodes) {
     cv::circle(canvas, entry, _radius, cv::Scalar(255, 255, 225));
   }
-  popUpImage(canvas);
+  return canvas;
 }
 
-void HoneyCombTiling::showNodes(std::vector<cv::Point> nodes, int radius) {
+cv::Mat HoneyCombTiling::drawNodes(std::vector<cv::Point> nodes, int radius) {
   cv::Mat canvas = cv::Mat::zeros(
       cv::Size(_referenceXDimension, _referenceYDimension), CV_8UC1);
   for (auto entry : nodes) {
     cv::circle(canvas, entry, radius, cv::Scalar(255, 255, 225));
   }
-  popUpImage(canvas);
+  return canvas;
 }
 
 int HoneyCombTiling::_nearestInt(float f) {

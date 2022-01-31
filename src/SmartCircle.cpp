@@ -23,8 +23,6 @@ void SmartCircle::detectCircle(cv::Mat rawImage) {
     _centerPoint.x = circlesInt[0][0];
     _centerPoint.y = circlesInt[0][1];
     _radius = circlesInt[0][2];
-  } else {
-    std::cout << "No circle detected!\n";
   }
 }
 

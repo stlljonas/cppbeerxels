@@ -22,8 +22,8 @@ public:
   std::vector<cv::Point> getNodes() override;
   int getRadius() override;
 
-  void showNodes();
-  void showNodes(std::vector<cv::Point> nodes, int radius);
+  cv::Mat drawNodes();
+  cv::Mat drawNodes(std::vector<cv::Point> nodes, int radius);
   void setDimensions(const int xDimension, const int yDimension);
   void setMaxNumNodes(const int maxNumNodes);
 
