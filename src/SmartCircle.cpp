@@ -1,4 +1,6 @@
 #include "SmartCircle.h"
+#include "helpers.h"
+#include "Cerial.h"
 
 int SmartCircle::getRadius() { return _radius; }
 
@@ -13,10 +15,13 @@ void SmartCircle::detectCircle(cv::Mat rawImage) {
 
   // Detect Circle(s)
   std::vector<cv::Vec3f> circlesFloat;
-  cv::HoughCircles(workingImage, circlesFloat, cv::HOUGH_GRADIENT, 1.5, 50, 100,
-                   100, 20);
+  cv::HoughCircles(workingImage, circlesFloat, cv::HOUGH_GRADIENT, 1.5, 10, 100,
+                   80, 30);
   std::vector<cv::Vec3i> circlesInt = _Vec3i(circlesFloat);
-
+  drawHoughCircles(workingImage,circlesInt);
+  Cerial::print<std::size_t>(circlesInt.size(),DEBUG);
+  Cerial::println(" circles detected",DEBUG);
+  Cerial::showImage(workingImage,DEBUG);
   // circlesInt is sorted by highest rating -> circlesInt[0] should be the most
   // prominent circle detected
   if (!circlesInt.empty()) {
