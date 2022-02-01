@@ -4,6 +4,7 @@
 #include <iostream>
 
 VerbosityLevel Cerial::VERBOSITY;
+bool Cerial::VISUALIZE;
 
 void Cerial::indicateProgress(VerbosityLevel v) {
     if (Cerial::VERBOSITY >= v) { 
@@ -38,8 +39,9 @@ void Cerial::println(VerbosityLevel v) {
     }
 }
 
-void Cerial::showImage(cv::Mat image, VerbosityLevel v, int milliSeconds) {
-    if (Cerial::VERBOSITY >= v) {
+void Cerial::showImage(cv::Mat image, VerbosityLevel v, int milliSeconds, bool alwaysShow) {
+    if (Cerial::VERBOSITY >= v &&
+    (Cerial::VISUALIZE || alwaysShow)) {
         cv::imshow("image", image);
         cv::waitKey(milliSeconds);
     }

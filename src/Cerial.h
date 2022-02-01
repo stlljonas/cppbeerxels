@@ -32,10 +32,11 @@ class Cerial {
       }
     }
     static void println(VerbosityLevel v = NORMAL);
-    static void showImage(cv::Mat image, VerbosityLevel v = NORMAL, int milliSeconds = 0);
+    static void showImage(cv::Mat image, VerbosityLevel v = NORMAL, int milliSeconds = 0, bool alwaysShow = false);
     static bool isVerboseEnough(VerbosityLevel v = NORMAL);
     static void end();
     static VerbosityLevel VERBOSITY;
+    static bool VISUALIZE;
 };
 
 #endif /* _CONSOLE_OUTPUT_H_ */
