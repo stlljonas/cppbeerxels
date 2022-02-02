@@ -24,6 +24,10 @@ void CapShepherd::processCaps() {
   for (std::vector<std::unique_ptr<Cap>>::iterator cap = caps.begin();
        cap != caps.end(); ++cap) {
     cap->get()->analyze();
+    if(!cap->get()->isValid()) {
+      Cerial::println("Deleting cap",VERBOSE);
+      caps.erase(cap);
+    }
     Cerial::indicateProgress(NORMAL);
   }
   Cerial::endProgress(NORMAL);

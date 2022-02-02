@@ -19,6 +19,7 @@ public:
   void analyze();
   cv::Mat getBottleCap() const;
   cv::Scalar getAverageColor() const;
+  bool isValid();
 
 private:
   SmartCircle _circle;
@@ -29,6 +30,7 @@ private:
   static uint _imageMaxDimension;
   cv::Mat _uniformRescale(cv::Mat image);
   void _saveBottleCap(cv::Mat bottleCap);
+  bool validity = false;
   /*// 0 = none, 1 = text, 2 = text & images
   int logLevel = 0;*/
 };
