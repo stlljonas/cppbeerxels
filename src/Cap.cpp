@@ -12,7 +12,7 @@ void Cap::analyze() {
   if (_circle.getRadius() > 1) {
     validity = true;
   } else {
-    Cerial::print(_sourceImagePath.string());
+    Cerial::print(_sourceImagePath.string(),VERBOSE);
     Cerial::println(" is invalid!", VERBOSE);
   }
   _bottleCap = _circle.cutOutCircle(image);

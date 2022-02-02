@@ -16,7 +16,7 @@ void SmartCircle::detectCircle(cv::Mat rawImage) {
   // Detect Circle(s)
   std::vector<cv::Vec3f> circlesFloat;
   cv::HoughCircles(workingImage, circlesFloat, cv::HOUGH_GRADIENT, 1.5, 10, 100,
-                   150, 30);
+                   80, 30);
   std::vector<cv::Vec3i> circlesInt = _Vec3i(circlesFloat);
   drawHoughCircles(workingImage,circlesInt);
   Cerial::print<std::size_t>(circlesInt.size(),DEBUG);
