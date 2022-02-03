@@ -2,14 +2,32 @@
 C++ implementation of Beerxels project (previously in Python)
 
 
-Architecture (Dependency Diagram):
+# Installation
 
+# Dependencies
 
-Tiling <------------------------------------
-                                           :
-SmartCircle <-- Cap <-- CapShepherd <-- CapField
-    ^                                      ;
-    '---------------------------------------
-                                           ;
-                                           v
-                                        Munkres
+# Usage
+
+# Example Result
+
+# Architecture
+
+Dependency Diagram:
+<pre>
+ Hungarian
+    ^
+    |
+ CapField-----------> Tiling
+    |           |
+    v           |
+CapShepherd     |
+    |           |
+    v           |
+   Cap          |
+    |           |
+    v           |
+SmartCircle <----
+    |
+    v
+  OpenCV
+</pre>
