@@ -16,6 +16,9 @@ public:
   cv::Rect regionOfInterest();
   cv::Mat computeMask();
   cv::Mat computeMask(cv::Mat image);
+  void shiftCenterX(int numberOfPixels);
+  void shiftCenterY(int numberOfPixels);
+  void varyRadius(int numberOfPixels);
 
 private:
   int _radius = 0;
