@@ -1,6 +1,7 @@
 #ifndef _HELPERS_H_
 #define _HELPERS_H_
 
+#include <filesystem>
 #include <opencv2/opencv.hpp>
 
 void popUpImage(cv::Mat image);
@@ -15,5 +16,10 @@ vectorOfVec3FloatToInt(const std::vector<cv::Vec3f> &floatVector);
 void rawDataSequentialRename();
 // delete all non rawdata images
 void purgeData();
+
+std::string type2str(int type);
+
+void resizeImage(std::filesystem::path imageFilePath,
+                 std::filesystem::path destinationPath, double factor = 1.0);
 
 #endif /* _HELPERS_H_ */

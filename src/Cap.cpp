@@ -14,13 +14,6 @@ cv::Mat Cap::getBottleCap() const { return _bottleCap; }
 
 cv::Scalar Cap::getAverageColor() const { return _averageColor; }
 
-/*cv::Mat Cap::_cutOutBottleCap(cv::Mat image) {
-  // Detect Circle
-  _circle.detectCircle(image);
-  // Cut out bottle cap
-  return _circle.cutOutCircle(image);
-}*/
-
 void Cap::_saveBottleCap(cv::Mat bottleCap) {
   std::filesystem::path cutOutsName{"cutouts"};
   std::filesystem::path cutOutImagePath =

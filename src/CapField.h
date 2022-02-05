@@ -20,14 +20,13 @@ public:
   void runCapShepherd();
   // load reference, find optimal tiling,
   // create smart circles at tiling nodes
-  void processReference();
-  // calls munkres to find placement of caps
-  // in field. More precisely, between
-  // CapField::CapShepherd::_caps::getAverageColor()
-  // and
-  // CapField::_referenceCircles::computeAverageColor()
+  void processReference(uint numberOfNodes = 0);
+  // calls munkres to find placement of caps in field
   void computePlacement();
-  // void showPlacement();
+  // show placement using average colors
+  cv::Mat computeCircleField();
+  // show field using the actual caps
+  cv::Mat computeCapField();
 
 private:
   CapShepherd _capShepherd;
@@ -35,6 +34,7 @@ private:
   HoneyCombTiling _honeyCombTiling;
   std::vector<int> _placement;
   const std::filesystem::path _referenceImagePath;
+  cv::Size _referenceImageSize;
 
   // munkres lib object?
   HungarianAlgorithm _hungAlgo;
