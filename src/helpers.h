@@ -1,8 +1,8 @@
 #ifndef _HELPERS_H_
 #define _HELPERS_H_
 
-#include <opencv2/opencv.hpp>
 #include <filesystem>
+#include <opencv2/opencv.hpp>
 
 void popUpImage(cv::Mat image);
 
@@ -19,6 +19,7 @@ void purgeData();
 
 std::string type2str(int type);
 
-void resizeImage(std::filesystem::path imageFilePath, std::filesystem::path destinationPath, double factor = 1.0);
+void resizeImage(std::filesystem::path imageFilePath,
+                 std::filesystem::path destinationPath, double factor = 1.0);
 
 #endif /* _HELPERS_H_ */

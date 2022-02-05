@@ -23,7 +23,7 @@ void CapField::processReference(uint numberOfNodes) {
     _honeyCombTiling.setMaxNumNodes(numberOfNodes);
     std::cout << numberOfNodes << std::endl;
   } else {
-    std::cout << _capShepherd.caps.size() <<std::endl;
+    std::cout << _capShepherd.caps.size() << std::endl;
     _honeyCombTiling.setMaxNumNodes(_capShepherd.caps.size());
   }
   _honeyCombTiling.optimalTiling();
@@ -51,16 +51,15 @@ void CapField::computePlacement() {
 
 void CapField::showCircleField() {
   cv::Mat image = cv::imread(_referenceImagePath.string());
-  //std::cout << type2str(image.type()) << std::endl;
+  // std::cout << type2str(image.type()) << std::endl;
   popUpImage(image);
-  cv::Mat circleField(image.size(),image.type(),{0,0,0});
-  for (auto& pCircle : _referenceCircles) {
+  cv::Mat circleField(image.size(), image.type(), {0, 0, 0});
+  for (auto &pCircle : _referenceCircles) {
     SmartCircle circle = *pCircle.get();
-    cv::circle(circleField, circle.getCenterPoint(),
-    circle.getRadius(),
-    circle.computeAverageColor(image),-1);
+    cv::circle(circleField, circle.getCenterPoint(), circle.getRadius(),
+               circle.computeAverageColor(image), -1);
   }
-  //std::cout << type2str(circleField.type()) << std::endl;
+  // std::cout << type2str(circleField.type()) << std::endl;
   popUpImage(circleField);
 }
 
