@@ -3,9 +3,7 @@
 #include <math.h>
 
 void CapField::runCapShepherd() {
-  std::cout << "initializing capfield\n";
   _capShepherd.init();
-  std::cout << "processing caps\n";
   _capShepherd.processCaps();
 }
 
@@ -51,7 +49,7 @@ void CapField::computePlacement() {
 
 cv::Mat CapField::computeCircleField() {
   cv::Mat image = cv::imread(_referenceImagePath.string());
-  // popUpImage(image);
+  popUpImage(image);
   cv::Mat circleField(image.size(), image.type(), {0, 0, 0});
   for (auto &pCircle : _referenceCircles) {
     SmartCircle circle = *pCircle.get();
@@ -63,7 +61,14 @@ cv::Mat CapField::computeCircleField() {
 
 cv::Mat CapField::computeCapField() {
   cv::Mat capField(_referenceImageSize, CV_8UC3, {0, 0, 0});
-  for (int i = 0; i < _honeyCombTiling.getNodes().size(); ++i) {
+  std::cout << _honeyCombTiling.getNodes().size() << std::endl;
+  const int numberOfCaps =_capShepherd.caps.size();
+  for (int i = 0; i < numberOfCaps; ++i) {
+    std::cout << "place cap " << i << std::endl;
+    if (_placement[i] < 0) {
+      std::cout << "abort\n";
+      continue;
+    }
     SmartCircle referenceCircle = *_referenceCircles[_placement[i]].get();
     cv::Mat bottleCap = _capShepherd.caps[i].get()->getBottleCap();
     cv::Mat imageSection = capField(referenceCircle.regionOfInterest());
@@ -71,10 +76,8 @@ cv::Mat CapField::computeCapField() {
     cv::Size size(2 * r + 1, 2 * r + 1);
     cv::Mat resizedBottleCap;
     cv::resize(bottleCap, resizedBottleCap, size);
-    std::cout << imageSection.size() << std::endl;
-    std::cout << resizedBottleCap.size() << std::endl;
-    std::cout << referenceCircle.computeMask(imageSection).size() << std::endl;
     resizedBottleCap.copyTo(imageSection, referenceCircle.computeMask());
+    popUpImage(capField);
   }
   return capField;
 }
