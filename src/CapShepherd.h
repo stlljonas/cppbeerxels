@@ -10,9 +10,8 @@ class CapShepherd {
 public:
   CapShepherd(std::filesystem::path bottleCapDirectoryPath_)
       : _bottleCapDirectoryPath(bottleCapDirectoryPath_){};
-  // find files, and initialize caps with correct paths in _caps
-  void init();
-  // call cap methods
+
+  // load images from file and try to detect circles
   void processCaps();
   // delete all computed images (keep raws)
   void purge();

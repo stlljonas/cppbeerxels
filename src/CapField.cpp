@@ -4,7 +4,6 @@
 #include "Cerial.h"
 
 void CapField::runCapShepherd() {
-  _capShepherd.init();
   _capShepherd.processCaps();
 }
 

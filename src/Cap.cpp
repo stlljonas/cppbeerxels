@@ -2,9 +2,19 @@
 #include "Cerial.h"
 
 void Cap::analyze() {
+  Cerial::print("Analyzing image ",VERBOSE);
+  Cerial::println(_sourceImagePath.filename().string(),VERBOSE);
   cv::Mat image = cv::imread(_sourceImagePath.string());
   image = _uniformRescale(image);
   _circle.detectCircle(image);
+  Cerial::print("Deected circle radius = ",DEBUG);
+  Cerial::println<int>(_circle.getRadius(),DEBUG);
+  if (_circle.getRadius() > 1) {
+    validity = true;
+  } else {
+    Cerial::print(_sourceImagePath.string(),VERBOSE);
+    Cerial::println(" is invalid!", VERBOSE);
+  }
   _bottleCap = _circle.cutOutCircle(image);
   _averageColor = _circle.computeAverageColor(/*_bottleCap*/ image);
   //_bottleCap = _cutOutBottleCap(image);
@@ -15,6 +25,10 @@ void Cap::analyze() {
 cv::Mat Cap::getBottleCap() const { return _bottleCap; }
 
 cv::Scalar Cap::getAverageColor() const { return _averageColor; }
+
+bool Cap::isValid() {
+  return validity;
+}
 
 uint Cap::_imageMaxDimension = 500;
 

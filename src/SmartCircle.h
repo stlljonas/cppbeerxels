@@ -18,7 +18,7 @@ public:
   cv::Mat computeMask(cv::Mat image);
 
 private:
-  int _radius;
+  int _radius = 0;
   // x equals width, left to right, equals cols
   // y equals height, top to bottom, equals rows
   cv::Point _centerPoint;
