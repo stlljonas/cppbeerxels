@@ -4,7 +4,7 @@
 #include "Cerial.h"
 
 void Field::runCapShepherd() {
-  _capShepherd.processCaps();
+  _capShepherd.processCaps(true);
 }
 
 // @param numberOfNodes optional upper limit of possible nodes.

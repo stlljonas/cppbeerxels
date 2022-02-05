@@ -16,7 +16,7 @@ public:
       : _sourceImagePath(sourceImagePath_)/*,
         logLevel(logLevel_)*/{};
 
-  void analyze();
+  void analyze(bool tuning = false); // add tuning choice as parameter
   cv::Mat getBottleCap() const;
   cv::Scalar getAverageColor() const;
   bool isValid();
@@ -28,11 +28,11 @@ private:
   cv::Scalar _averageColor;
   std::filesystem::path _sourceImagePath;
   static uint _imageMaxDimension;
+  bool _validity = false;
   cv::Mat _uniformRescale(cv::Mat image);
   void _saveBottleCap(cv::Mat bottleCap);
-  bool validity = false;
-  /*// 0 = none, 1 = text, 2 = text & images
-  int logLevel = 0;*/
+  void _tuneCircle(cv::Mat image); // move back to private
+  void _autoTuneCircle();
 };
 
 #endif /* _CAP_H_ */
