@@ -28,7 +28,8 @@ void CapShepherd::processCaps() {
 
   // Tune cutout circles
   if (Flags::MANUAL_TUNING) {
-    capIterator = caps.begin();
+    std::cout << "Starting tuning process\n";
+    std::cout << "Press 'c' at any time to see list of command options\n";    capIterator = caps.begin();
     while (capIterator != caps.end()) {
       ReturnAction returnAction = capIterator->get()->tune();
       if (returnAction == RETUNE_PREVIOUS) {
