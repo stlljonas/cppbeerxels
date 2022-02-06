@@ -144,8 +144,6 @@ void SmartCircle::_varyRadius(int numberOfPixels) {
 
 ReturnAction SmartCircle::tuneCircle(cv::Mat image) {
   cv::imshow("tuning", image);
-  std::cout << "Starting tuning process\n";
-  std::cout << "Press 'c' at any time to see list of command options\n";
   bool finished = false;
   ReturnAction returnAction;
   while (!finished) {
