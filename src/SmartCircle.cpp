@@ -2,7 +2,7 @@
 #include "helpers.h"
 #include "Cerial.h"
 
-enum ubuntuKeyCodes {
+enum UbuntuKeyCodes {
   a = 1048673,
   b = 1048674,
   c = 1048675,
@@ -35,6 +35,12 @@ enum ubuntuKeyCodes {
   ARROWRIGHT = 1113939,
   ARROWDOWN = 1113940
 };
+
+enum ReturnAction {
+  REJECT_CIRCLE = 0,
+  ACCEPT_CIRCLE = 1,
+  RETUNE_PREVIOUS = 2 // this doesn't quite follow the single responsibility principle..
+}
 
 int SmartCircle::getRadius() { return _radius; }
 
@@ -148,7 +154,7 @@ bool SmartCircle::tuneCircle(cv::Mat image) {
   std::cout << "Starting tuning process\n";
   std::cout << "Press 'c' at any time to see list of command options\n";
   bool finished = false;
-  bool validity;
+  ReturnAction returnAction;
   while (!finished) {
     // show image with circle
     cv::Mat circleImage = image.clone();
@@ -158,7 +164,8 @@ bool SmartCircle::tuneCircle(cv::Mat image) {
     switch(currentKey) {
       case c: {
         std::cout << "[ENTER]: confirm circle\n"
-                  << "[q]: discard bottleCap\n"
+                  << "[q]: discard circle\n"
+                  << "[r]: go back to previous circle\n"
                   << "[w]: increase radius\n"
                   << "[s]: decrease radius\n"
                   << "[ARROWLEFT]: shift center left\n"
@@ -168,12 +175,17 @@ bool SmartCircle::tuneCircle(cv::Mat image) {
         break;
       }
       case ENTER: {
-        validity = true;
+        returnAction = ACCEPT_CIRCLE;
         finished = true;
         break;
       }
       case q: {
-        validity = false;
+        returnAction = REJECT_CIRCLE;
+        finished = true;
+        break;
+      }
+      case r: {
+        returnAction = RETUNE_PREVIOUS;
         finished = true;
         break;
       }
@@ -207,5 +219,5 @@ bool SmartCircle::tuneCircle(cv::Mat image) {
     }
   }
   cv::destroyWindow("tuning");
-  return validity;
+  return returnAction;
 }
