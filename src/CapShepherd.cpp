@@ -2,7 +2,7 @@
 #include "Cerial.h"
 #include <filesystem>
 
-void CapShepherd::processCaps(bool tuning) {
+void CapShepherd::processCaps() {
   Cerial::println("Processing Caps");
   const std::filesystem::path &path =
       _bottleCapDirectoryPath; // for readability
@@ -21,11 +21,13 @@ void CapShepherd::processCaps(bool tuning) {
 
   // Initialize caps
   for (auto& cap : caps) {
+    Cerial::indicateProgress();
     cap.get()->init();
   }
-  
+  Cerial::endProgress();
+
   // Tune cutout circles
-  if (tuning) {
+  if (Flags::MANUAL_TUNING) {
     capIterator = caps.begin();
     while (capIterator != caps.end()) {
       ReturnAction returnAction = capIterator->get()->tune();
