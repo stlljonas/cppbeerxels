@@ -3,6 +3,12 @@
 
 #include <opencv2/opencv.hpp>
 
+enum ReturnAction {
+  REJECT_CIRCLE = 0,
+  ACCEPT_CIRCLE = 1,
+  RETUNE_PREVIOUS = 2 // this doesn't quite follow the single responsibility principle..
+};
+
 class SmartCircle {
 public:
   SmartCircle(){};
@@ -11,7 +17,7 @@ public:
   int getRadius();
   cv::Point getCenterPoint();
   void detectCircle(cv::Mat image);
-  bool tuneCircle(cv::Mat image);
+  ReturnAction tuneCircle(cv::Mat image);
   cv::Mat cutOutCircle(cv::Mat image);
   cv::Scalar computeAverageColor(cv::Mat image);
   cv::Rect regionOfInterest();

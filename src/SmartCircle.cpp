@@ -35,13 +35,6 @@ enum UbuntuKeyCodes {
   ARROWRIGHT = 1113939,
   ARROWDOWN = 1113940
 };
-
-enum ReturnAction {
-  REJECT_CIRCLE = 0,
-  ACCEPT_CIRCLE = 1,
-  RETUNE_PREVIOUS = 2 // this doesn't quite follow the single responsibility principle..
-}
-
 int SmartCircle::getRadius() { return _radius; }
 
 cv::Point SmartCircle::getCenterPoint() { return _centerPoint; }
@@ -149,7 +142,7 @@ void SmartCircle::_varyRadius(int numberOfPixels) {
   }
 }
 
-bool SmartCircle::tuneCircle(cv::Mat image) {
+ReturnAction SmartCircle::tuneCircle(cv::Mat image) {
   cv::imshow("tuning", image);
   std::cout << "Starting tuning process\n";
   std::cout << "Press 'c' at any time to see list of command options\n";
@@ -165,7 +158,7 @@ bool SmartCircle::tuneCircle(cv::Mat image) {
       case c: {
         std::cout << "[ENTER]: confirm circle\n"
                   << "[q]: discard circle\n"
-                  << "[r]: go back to previous circle\n"
+                  << "[r]: go back to previous image\n"
                   << "[w]: increase radius\n"
                   << "[s]: decrease radius\n"
                   << "[ARROWLEFT]: shift center left\n"
