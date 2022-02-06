@@ -1,15 +1,15 @@
-#include "CapField.h"
+#include "Field.h"
 #include <functional>
 #include <math.h>
 #include "Cerial.h"
 
-void CapField::runCapShepherd() {
+void Field::runCapShepherd() {
   _capShepherd.processCaps();
 }
 
 // @param numberOfNodes optional upper limit of possible nodes.
 //  if not provided will be set equal to number of caps detected
-void CapField::processReference(uint numberOfNodes) {
+void Field::processReference(uint numberOfNodes) {
   Cerial::println("Processing reference image", NORMAL);
   // load image
   cv::Mat image = cv::imread(_referenceImagePath.string());
@@ -41,7 +41,7 @@ void CapField::processReference(uint numberOfNodes) {
   Cerial::endProgress(DEBUG);
 }
 
-void CapField::computePlacement() {
+void Field::computePlacement() {
   Cerial::println("Computing cap placement\n");
 
   std::vector<std::vector<double>> costMatrix = _computeCostMatrix();
@@ -64,7 +64,7 @@ void CapField::computePlacement() {
   Cerial::println<double>(cost, VERBOSE);
 }
 
-cv::Mat CapField::computeCircleField() {
+cv::Mat Field::computeCircleField() {
 
   Cerial::println("Computing circle field");
 
@@ -80,7 +80,7 @@ cv::Mat CapField::computeCircleField() {
   return circleField;
 }
 
-cv::Mat CapField::computeCapField() {
+cv::Mat Field::computeField() {
   Cerial::println("Computing cap field");
   cv::Mat capField(_referenceImageSize, CV_8UC3, {0, 0, 0});
 
@@ -109,7 +109,7 @@ cv::Mat CapField::computeCapField() {
   return capField;
 }
 
-std::vector<std::vector<double>> CapField::_computeCostMatrix() {
+std::vector<std::vector<double>> Field::_computeCostMatrix() {
   cv::Mat image = cv::imread(_referenceImagePath.string());
   size_t numCaps = _capShepherd.caps.size();
   size_t numCirc = _referenceCircles.size();
@@ -125,7 +125,7 @@ std::vector<std::vector<double>> CapField::_computeCostMatrix() {
   return costMatrix;
 }
 
-double CapField::_costFunction(const cv::Scalar a, const cv::Scalar b) {
+double Field::_costFunction(const cv::Scalar a, const cv::Scalar b) {
   return pow(a[0] - b[0], 2) + pow(a[1] - b[1], 2) + pow(a[2] - b[2], 2);
 }
 

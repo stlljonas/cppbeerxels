@@ -1,4 +1,4 @@
-#include "CapField.h"
+#include "Field.h"
 #include "CapShepherd.h"
 #include "Cerial.h"
 #include "helpers.h"
@@ -35,14 +35,14 @@ int main(int argc, char **argv) {
 
   resizeImage(unprocessedReferencePath, referenceImageFilePath, 0.25);
 
-  CapField field(referenceImageFilePath, bottleCapDirectoryPath);
+  Field field(referenceImageFilePath, bottleCapDirectoryPath);
   field.runCapShepherd();
   std::cout << "Verbosity level " << Cerial::VERBOSITY << std::endl;
   field.processReference();
   field.computePlacement();
   cv::Mat circleField = field.computeCircleField();
   // popUpImage(circleField);
-  cv::Mat capField = field.computeCapField();
+  cv::Mat capField = field.computeField();
   cv::imwrite(outputFilePath.string(), capField);
   Cerial::showImage(capField,NORMAL,0,true);
   //cv::imshow("new window",capField);

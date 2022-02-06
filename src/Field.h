@@ -9,10 +9,10 @@
 #include <opencv2/opencv.hpp>
 #include <vector>
 
-class CapField {
+class Field {
 public:
-  CapField() = delete;
-  CapField(std::filesystem::path referenceFilePath_,
+  Field() = delete;
+  Field(std::filesystem::path referenceFilePath_,
            std::filesystem::path bottleCapDirectoryPath_)
       : _referenceImagePath(referenceFilePath_),
         _capShepherd(bottleCapDirectoryPath_){};
@@ -26,7 +26,7 @@ public:
   // show placement using average colors
   cv::Mat computeCircleField();
   // show field using the actual caps
-  cv::Mat computeCapField();
+  cv::Mat computeField();
 
 private:
   CapShepherd _capShepherd;
