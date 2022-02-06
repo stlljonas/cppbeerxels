@@ -21,19 +21,14 @@ int main(int argc, char **argv) {
     if (argc > 2) {
         if (*argv[2] == 'v') Cerial::VISUALIZE = true;
     }
-  //Cerial::VISUALIZE = true;
-  std::filesystem::path unprocessedReferencePath =
-      "/home/jstolle/code/cppbeerxels/referece-image.jpg";
+
   std::filesystem::path referenceImageFilePath =
-      "/home/jstolle/code/cppbeerxels/data/refernece/referece-image.jpg";
+    "/home/jstolle/code/cppbeerxels/data/refernece/baboon.tiff";
   std::filesystem::path bottleCapDirectoryPath =
-    //   "/home/jstolle/code/cppbeerxels/data/raw/";
-          "/home/jstolle/code/cppbeerxels/data/raw-orange/";
+    "/home/jstolle/code/cppbeerxels/data-local/raw-orange/";
 
   std::filesystem::path outputFilePath = 
-      "/home/jstolle/code/cppbeerxels/data/res.png";
-
-  resizeImage(unprocessedReferencePath, referenceImageFilePath, 0.25);
+    "/home/jstolle/code/cppbeerxels/data/res.png";
 
   Field field(referenceImageFilePath, bottleCapDirectoryPath);
   field.runCapShepherd();

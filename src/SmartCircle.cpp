@@ -75,3 +75,33 @@ cv::Rect SmartCircle::regionOfInterest() {
   cv::Rect boundingRect(x - r, y - r, r * 2 + 1, r * 2 + 1);
   return boundingRect;
 }
+
+// pass negative or positive integer to specify direction
+void SmartCircle::shiftCenterX(int numberOfPixels) {
+  // edge case
+  if (_centerPoint.x+numberOfPixels <= 0) {
+    _centerPoint.x = 0;
+  } else {
+    _centerPoint.x += numberOfPixels;
+  }
+}
+
+// pass negative or positive integer to specify direction
+void SmartCircle::shiftCenterY(int numberOfPixels) {
+  // edge case
+  if (_centerPoint.y+numberOfPixels <= 0) {
+    _centerPoint.y = 0;
+  } else {
+    _centerPoint.y += numberOfPixels;
+  }
+}
+
+// pass negative or positive integer to specify direction
+void SmartCircle::varyRadius(int numberOfPixels) {
+  // edge case
+  if (_radius+numberOfPixels <= 0) {
+    _radius = 0;
+  } else {
+    _radius += numberOfPixels;
+  }
+}

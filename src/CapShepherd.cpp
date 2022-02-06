@@ -2,7 +2,7 @@
 #include "Cerial.h"
 #include <filesystem>
 
-void CapShepherd::processCaps() {
+void CapShepherd::processCaps(bool tuning) {
   Cerial::println("Processing Caps");
   const std::filesystem::path &path =
       _bottleCapDirectoryPath; // for readability
@@ -13,7 +13,7 @@ void CapShepherd::processCaps() {
       Cerial::print("Creating cap from file ",DEBUG);
       Cerial::println(file.path().filename().string(),DEBUG);
       std::unique_ptr<Cap> newCap(new Cap(file.path()));
-      newCap->analyze();
+      newCap->analyze(tuning);
       if (newCap->isValid()) {
         caps.push_back(std::move(newCap));
       } else {
