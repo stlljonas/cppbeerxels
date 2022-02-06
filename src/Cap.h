@@ -31,8 +31,6 @@ private:
   bool _validity = false;
   cv::Mat _uniformRescale(cv::Mat image);
   void _saveBottleCap(cv::Mat bottleCap);
-  void _tuneCircle(cv::Mat image); // move back to private
-  void _autoTuneCircle();
 };
 
 #endif /* _CAP_H_ */
