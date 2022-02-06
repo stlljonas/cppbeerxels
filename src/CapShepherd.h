@@ -12,7 +12,7 @@ public:
       : _bottleCapDirectoryPath(bottleCapDirectoryPath_){};
 
   // load images from file and try to detect circles
-  void processCaps(bool tuning = false);
+  void processCaps();
   // delete all computed images (keep raws)
   void purge();
   // void placeCaps(vector placement, target? (where to place them));
