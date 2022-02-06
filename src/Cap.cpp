@@ -1,38 +1,49 @@
 #include "Cap.h"
 #include "Cerial.h"
 
-void Cap::analyze(bool tuning) {
-  
-  Cerial::print("Analyzing image ",VERBOSE);
+void Cap::init() {
+  Cerial::print("Initializing cap ",VERBOSE);
   Cerial::println(_sourceImagePath.filename().string(),VERBOSE);
   
   cv::Mat image = cv::imread(_sourceImagePath.string());
-  image = _uniformRescale(image);
-  _circle.detectCircle(image);
+  _workingImage = _uniformRescale(image);
+  _circle.detectCircle(_workingImage);
 
-  if (tuning) {
-    _validity = _circle.tuneCircle(image);
-  }
-  Cerial::print("Deected circle radius = ",DEBUG);
+  Cerial::print("Detected circle radius = ",DEBUG);
   Cerial::println<int>(_circle.getRadius(),DEBUG);
+  
   if (_circle.getRadius() > 1) {
     _validity = true;
   } else {
     Cerial::print(_sourceImagePath.string(),VERBOSE);
     Cerial::println(" is invalid!", VERBOSE);
   }
-  _bottleCap = _circle.cutOutCircle(image);
-  _averageColor = _circle.computeAverageColor(/*_bottleCap*/ image);
-  //_bottleCap = _cutOutBottleCap(image);
+  
+}
+
+ReturnAction Cap::tune() {
+  ReturnAction returnAction = _circle.tuneCircle(_workingImage);
+  if (returnAction == ACCEPT_CIRCLE) { 
+    _validity = true;
+  } else {
+    _validity = false;
+  }
+  return returnAction;
+}
+
+void Cap::process() {
+  _bottleCap = _circle.cutOutCircle(_workingImage);
+  _averageColor = _circle.computeAverageColor(/*_bottleCap*/ _workingImage);
   Cerial::showImage(_bottleCap, NORMAL,100);
   _saveBottleCap(_bottleCap);
 }
+
 
 cv::Mat Cap::getBottleCap() const { return _bottleCap; }
 
 cv::Scalar Cap::getAverageColor() const { return _averageColor; }
 
-bool Cap::isValid() {
+bool Cap::isValid() const {
   return _validity;
 }
 
