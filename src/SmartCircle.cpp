@@ -28,6 +28,9 @@ void SmartCircle::detectCircle(cv::Mat rawImage) {
     _centerPoint.x = circlesInt[0][0];
     _centerPoint.y = circlesInt[0][1];
     _radius = circlesInt[0][2];
+  } else { // keep radius at 0 but but center in center of image
+    _centerPoint.x = rawImage.size[0]/2;
+    _centerPoint.y = rawImage.size[1]/2;
   }
 }
 
