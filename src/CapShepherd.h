@@ -16,7 +16,7 @@ public:
   // delete all computed images (keep raws)
   void purge();
   // void placeCaps(vector placement, target? (where to place them));
-  std::vector<std::unique_ptr<Cap>> caps;
+  std::list<std::unique_ptr<Cap>> caps;
 
 private:
   const std::filesystem::path _bottleCapDirectoryPath;
