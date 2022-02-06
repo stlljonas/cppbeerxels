@@ -85,19 +85,22 @@ cv::Mat Field::computeField() {
   cv::Mat capField(_referenceImageSize, CV_8UC3, {0, 0, 0});
 
   Cerial::showImage(capField, NORMAL, 200);  
-  const int numberOfCaps =_capShepherd.caps.size();
-  for (int i = 0; i < numberOfCaps; ++i) {
-    Cerial::print("Placing cap  ", VERBOSE);
-    Cerial::print<int>(i,VERBOSE);
+  //const int numberOfCaps =_capShepherd.caps.size();
+  //for (int i = 0; i < numberOfCaps; ++i) {
+  uint capIndex = 0;
+  for (auto& cap : _capShepherd.caps) {
+    Cerial::print("Placing cap", VERBOSE);
+    Cerial::print<int>(capIndex,VERBOSE);
     Cerial::print(" in position ", VERBOSE);
-    Cerial::print<int>(_placement[i],VERBOSE);
-    if (_placement[i] < 0) {
+    Cerial::print<int>(_placement[capIndex],VERBOSE);
+    if (_placement[capIndex] < 0) {
       Cerial::println(" .. abort",VERBOSE);
+      ++capIndex;
       continue;
     }
     Cerial::println(VERBOSE);
-    SmartCircle referenceCircle = *_referenceCircles[_placement[i]].get();
-    cv::Mat bottleCap = _capShepherd.caps[i].get()->getBottleCap();
+    SmartCircle referenceCircle = *_referenceCircles[_placement[capIndex]].get();
+    cv::Mat bottleCap = cap.get()->getBottleCap();
     cv::Mat imageSection = capField(referenceCircle.regionOfInterest());
     int r = referenceCircle.getRadius();
     cv::Size size(2 * r + 1, 2 * r + 1);
@@ -105,6 +108,7 @@ cv::Mat Field::computeField() {
     cv::resize(bottleCap, resizedBottleCap, size);
     resizedBottleCap.copyTo(imageSection, referenceCircle.computeMask());
     Cerial::showImage(capField, NORMAL, 50);
+    ++capIndex;
   }
   return capField;
 }
@@ -115,12 +119,15 @@ std::vector<std::vector<double>> Field::_computeCostMatrix() {
   size_t numCirc = _referenceCircles.size();
   std::vector<std::vector<double>> costMatrix(numCaps,
                                               std::vector<double>(numCirc, 0));
-  for (int i = 0; i < numCaps; ++i) {
+  //for (int i = 0; i < numCaps; ++i) {
+  uint capIndex = 0;
+  for (auto& cap : _capShepherd.caps) {
     for (int j = 0; j < numCirc; ++j) {
-      costMatrix[i][j] =
-          _costFunction(_capShepherd.caps[i].get()->getAverageColor(),
+      costMatrix[capIndex][j] =
+          _costFunction(cap.get()->getAverageColor(),
                         _referenceCircles[j].get()->computeAverageColor(image));
     }
+    ++capIndex;
   }
   return costMatrix;
 }
@@ -128,16 +135,3 @@ std::vector<std::vector<double>> Field::_computeCostMatrix() {
 double Field::_costFunction(const cv::Scalar a, const cv::Scalar b) {
   return pow(a[0] - b[0], 2) + pow(a[1] - b[1], 2) + pow(a[2] - b[2], 2);
 }
-
-/*
-    Important: I need to know what munkres lib I will use
-    such that I know how the api I'll use will look like.
-    Need to make sure that my input data has the right type
-
-    Use: https://github.com/mcximing/hungarian-algorithm-cpp
-    Here we need to provide a preprocessed cost matrix. This should
-    be rather straight forward given _capShepherd::_caps and
-    _referenceCircles have been processed (I guess the averagecolors
-    don't have to be precomputed. Generally, the matrix version is good
-    as I don't need to provide a cost matrix etc. )
-*/
