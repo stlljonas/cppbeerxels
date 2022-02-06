@@ -14,6 +14,7 @@
 #include <cfloat> // for DBL_MAX
 #include <cmath>  // for fabs()
 #include <stdlib.h>
+#include "Cerial.h"
 
 HungarianAlgorithm::HungarianAlgorithm() {}
 HungarianAlgorithm::~HungarianAlgorithm() {}
@@ -160,7 +161,7 @@ void HungarianAlgorithm::assignmentoptimal(int *assignment, double *cost,
   /* move to step 2b */
   step2b(assignment, distMatrix, starMatrix, newStarMatrix, primeMatrix,
          coveredColumns, coveredRows, nOfRows, nOfColumns, minDim);
-
+  Cerial::endProgress();
   /* compute cost and remove invalid assignments */
   computeassignmentcost(assignment, cost, distMatrixIn, nOfRows);
 
@@ -212,6 +213,7 @@ void HungarianAlgorithm::step2a(int *assignment, double *distMatrix,
                                 bool *primeMatrix, bool *coveredColumns,
                                 bool *coveredRows, int nOfRows, int nOfColumns,
                                 int minDim) {
+  Cerial::indicateProgress();
   bool *starMatrixTemp, *columnEnd;
   int col;
 
