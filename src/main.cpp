@@ -6,21 +6,7 @@
 
 
 int main(int argc, char **argv) {
-    Cerial::VERBOSITY = NORMAL;
-    if (argc > 1) {
-        if (*argv[1] == 'q') {
-            Cerial::VERBOSITY = QUIET;
-        } else if (*argv[1] == 'v') {
-            Cerial::VERBOSITY = VERBOSE;
-        } else if (*argv[1] == 'd') {
-            Cerial::VERBOSITY = DEBUG;
-        } else if (*argv[1] == 'n') {
-            Cerial::VERBOSITY = NORMAL;
-        }
-    }
-    if (argc > 2) {
-        if (*argv[2] == 'v') Cerial::VISUALIZE = true;
-    }
+  Flags::parseFlags(argc, argv);
 
   std::filesystem::path referenceImageFilePath =
     "/home/jstolle/code/cppbeerxels/data/refernece/baboon.tiff";
@@ -32,7 +18,6 @@ int main(int argc, char **argv) {
 
   Field field(referenceImageFilePath, bottleCapDirectoryPath);
   field.runCapShepherd();
-  std::cout << "Verbosity level " << Cerial::VERBOSITY << std::endl;
   field.processReference();
   field.computePlacement();
   cv::Mat circleField = field.computeCircleField();
@@ -41,6 +26,5 @@ int main(int argc, char **argv) {
   cv::imwrite(outputFilePath.string(), capField);
   Cerial::showImage(capField,NORMAL,0,true);
   //cv::imshow("new window",capField);
-  std::cout << "done\n";
   Cerial::end();
 }
