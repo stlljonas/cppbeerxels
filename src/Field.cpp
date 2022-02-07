@@ -42,7 +42,7 @@ void Field::processReference(uint numberOfNodes) {
 }
 
 void Field::computePlacement() {
-  Cerial::println("Computing cap placement\n");
+  Cerial::println("Computing cap placement");
 
   std::vector<std::vector<double>> costMatrix = _computeCostMatrix();
   
