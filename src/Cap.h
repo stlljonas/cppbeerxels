@@ -1,9 +1,7 @@
 #ifndef _CAP_H_
 #define _CAP_H_
 
-#include "Circle.h"
 #include "SmartCircle.h"
-#include "helpers.h"
 #include <filesystem>
 #include <opencv2/opencv.hpp>
 #include <string>
