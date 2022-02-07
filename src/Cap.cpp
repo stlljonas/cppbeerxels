@@ -12,8 +12,13 @@ void Cap::init() {
   Cerial::print("Detected circle radius = ",DEBUG);
   Cerial::println<int>(_circle.getRadius(),DEBUG);
   
-  if (_circle.getRadius() > 1) {
-    _validity = true;
+  if (_circle.getRadius() > 1 &&
+    _circle.getCenterPoint().x - _circle.getRadius() >= 0 &&
+    _circle.getCenterPoint().y - _circle.getRadius() >= 0 &&
+    _circle.getCenterPoint().x + _circle.getRadius() < image.size[0] &&
+    _circle.getCenterPoint().y + _circle.getRadius() < image.size[1]
+    ) {
+      _validity = true;
   } else {
     Cerial::print(_sourceImagePath.string(),VERBOSE);
     Cerial::println(" is invalid!", VERBOSE);
