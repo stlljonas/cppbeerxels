@@ -73,5 +73,4 @@ void Cap::_saveBottleCap(cv::Mat bottleCap) {
       _sourceImagePath.parent_path().parent_path() / cutOutsName /
       _sourceImagePath.filename();
   cv::imwrite(cutOutImagePath.string(), bottleCap);
-  // possibly change permissions using std::filesystem
 };
