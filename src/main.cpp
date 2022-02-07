@@ -13,7 +13,7 @@ int main(int argc, char **argv) {
   std::filesystem::path referenceImageFilePath =
     "/home/jstolle/code/cppbeerxels/data/refernece/baboon.tiff";
   std::filesystem::path bottleCapDirectoryPath =
-    "/home/jstolle/code/cppbeerxels/data-local/raw-orange/";
+    "/home/jstolle/code/cppbeerxels/data-local/raw/";
 
   std::filesystem::path outputFilePath = 
     "/home/jstolle/code/cppbeerxels/data/res.png";
@@ -31,5 +31,5 @@ int main(int argc, char **argv) {
   Cerial::end();
   auto end = std::chrono::high_resolution_clock::now();
   auto ms_int = std::chrono::duration_cast<std::chrono::milliseconds>(end-start);
-  std::cout << "Program ran for " << ms_int << " milliseconds\n";
+  std::cout << "Program ran for " << ms_int.count() << " milliseconds\n";
 }
