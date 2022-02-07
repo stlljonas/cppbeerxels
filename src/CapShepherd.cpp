@@ -3,14 +3,13 @@
 #include <filesystem>
 
 void CapShepherd::processCaps() {
-  Cerial::println("Processing Caps");
   const std::filesystem::path &path =
       _bottleCapDirectoryPath; // for readability
   std::list<std::unique_ptr<Cap>>::iterator capIterator;
 
   // Instantiate caps from files
+  Cerial::println("Creating Cap objects from images");
   for (const auto &file : std::filesystem::directory_iterator(path)) {
-
     if (file.is_regular_file()) {
       Cerial::print("Creating cap from file ",DEBUG);
       Cerial::println(file.path().filename().string(),DEBUG);
@@ -20,9 +19,12 @@ void CapShepherd::processCaps() {
   }
 
   // Initialize caps
-  for (auto& cap : caps) {
+  Cerial::println("Initializing Caps");
+  capIterator = caps.begin();
+  while (capIterator != caps.end()){
     Cerial::indicateProgress();
-    cap.get()->init();
+    capIterator->get()->init();
+    ++capIterator;
   }
   Cerial::endProgress();
 
@@ -41,8 +43,10 @@ void CapShepherd::processCaps() {
   }
 
   // Remove invalid caps
+  Cerial::println("Removing invalid Caps");
   capIterator = caps.begin();
   while (capIterator != caps.end()){
+    Cerial::indicateProgress();
     if (capIterator->get()->isValid() == false) {
       // Remove cap and go to next element
       caps.erase(capIterator++);
@@ -50,9 +54,15 @@ void CapShepherd::processCaps() {
       ++capIterator;
     }
   }
+  Cerial::endProgress();
 
   // Process caps
-  for (auto& cap : caps) {
-    cap.get()->process();
+  Cerial::println("Processing Caps");
+  capIterator = caps.begin();
+  while (capIterator != caps.end()) {
+    Cerial::indicateProgress();
+    capIterator->get()->process();
+    ++capIterator;
   }
+  Cerial::endProgress();
 }
