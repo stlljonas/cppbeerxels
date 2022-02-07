@@ -2,16 +2,18 @@
 #include "CapShepherd.h"
 #include "Cerial.h"
 #include "helpers.h"
+#include <chrono>
 #include <iostream>
 
 
 int main(int argc, char **argv) {
+  auto start = std::chrono::high_resolution_clock::now();
   Flags::parseFlags(argc, argv);
 
   std::filesystem::path referenceImageFilePath =
     "/home/jstolle/code/cppbeerxels/data/refernece/baboon.tiff";
   std::filesystem::path bottleCapDirectoryPath =
-    "/home/jstolle/code/cppbeerxels/data-local/raw-orange/";
+    "/home/jstolle/code/cppbeerxels/data-local/raw/";
 
   std::filesystem::path outputFilePath = 
     "/home/jstolle/code/cppbeerxels/data/res.png";
@@ -27,4 +29,7 @@ int main(int argc, char **argv) {
   Cerial::showImage(capField,NORMAL,0,true);
   //cv::imshow("new window",capField);
   Cerial::end();
+  auto end = std::chrono::high_resolution_clock::now();
+  auto ms_int = std::chrono::duration_cast<std::chrono::milliseconds>(end-start);
+  std::cout << "Program ran for " << ms_int.count() << " milliseconds\n";
 }
