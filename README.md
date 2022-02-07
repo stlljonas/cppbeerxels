@@ -1,26 +1,49 @@
 # cppbeerxels
-C++ implementation of Beerxels project (previously in Python)
 
+C++ implementation of Beerxels project (previously in Python).
+
+This program takes in a number of pictures of bottlecaps (or any other circular object for that matter) and uses them to recreate a reference image in a pixel-art like style. 
+
+I have been collecting bottle caps over the past few years and wanted to create art with it. 
+
+This project is developed on Linux (Ubuntu 20.04) and compiled with gcc 9.3.0 exclusively.
+
+If you are on a different operating system: Proceed at your own risk.
 
 # Installation
 
-This project is developed and tested on Linux exclusively.
+You can use the precompiled binary or compile yourself.
+For local compilation, go to the project directory and first run
+```
+  $ cmake . 
+```
+and then 
+```
+  $ make
+```
+.
 
-If you are on a different operating system: Proceed at your own risk.
+Don't forget to install the required depenencies.
 
 # Dependencies
 
 This project requires [opencv to be installed](https://docs.opencv.org/4.x/df/d65/tutorial_table_of_content_introduction.html).
 
-The installation can sometimes be a bit tricky, on linux. Following the link above should work, but in my case I had to add a symbolic link with the command 
-'''
-	$ sudo ln -s /usr/local/include/opencv4/opencv2 /usr/local/include/opencv2
-'''
+The installation can sometimes be a bit tricky. Following the link above should work, but in my case I had to add a symbolic link with the command 
+```
+$ sudo ln -s /usr/local/include/opencv4/opencv2 /usr/local/include/opencv2
+```
 for the compiler to find the library. 
 
 # Usage
 
+This project is interfaced via the command line. 
+
+It is imperative that the executable is run from the project directory, as relative paths are used to access the images in the data directory.
+
 # Example Result
+
+
 
 # Architecture
 
@@ -43,3 +66,5 @@ SmartCircle <----
     v
   OpenCV
 </pre>
+
+# Contact
