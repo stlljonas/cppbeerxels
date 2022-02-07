@@ -14,6 +14,7 @@ void HoneyCombTiling::optimalTiling() {
   // int a;
   // std::cin >> a;
   while (_findNumberOfNodes(_radius) > _maxNumberOfNodes) {
+    Cerial::indicateProgress();
     ++_radius;
     // std::cout << "current radius: " << _radius << std::endl;
     Cerial::print("Current radius = ", DEBUG);
@@ -24,6 +25,7 @@ void HoneyCombTiling::optimalTiling() {
     _centerNodes();
     Cerial::showImage(drawNodes(), VERBOSE, 20);
   };
+  Cerial::endProgress();
   //_radius = radius;
   //std::cout << "optimal radius = " << _radius << std::endl;
   Cerial::print("Optimal nodes number = ", VERBOSE);
