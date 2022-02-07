@@ -10,13 +10,13 @@ int main(int argc, char **argv) {
   auto start = std::chrono::high_resolution_clock::now();
   Flags::parseFlags(argc, argv);
 
-  std::filesystem::path referenceImageFilePath =
-    "/home/jstolle/code/cppbeerxels/data/refernece/baboon.tiff";
-  std::filesystem::path bottleCapDirectoryPath =
-    "/home/jstolle/code/cppbeerxels/data-local/raw/";
+  std::filesystem::path workingDirectory = std::filesystem::current_path();
+  
+  std::filesystem::path referenceImageFilePath = workingDirectory / "data/reference/baboon.tiff";
+  
+  std::filesystem::path bottleCapDirectoryPath = workingDirectory / "data/raw/";
 
-  std::filesystem::path outputFilePath = 
-    "/home/jstolle/code/cppbeerxels/data/res.png";
+  std::filesystem::path outputFilePath = workingDirectory / "/data/res.png";
 
   Field field(referenceImageFilePath, bottleCapDirectoryPath);
   field.runCapShepherd();
