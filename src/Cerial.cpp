@@ -15,21 +15,7 @@ void Cerial::endProgress(VerbosityLevel v) {
         std::cout << "done\n";
     }
 }
-/*
-template <typename T>
-void Cerial::print(T output, Level v) {
-    if ( >= v) {
-        std::cout << output;
-    }
-}
 
-template <typename T>
-void Cerial::println(T output, VerbosityLevel v) {
-    if (Flags::VERBOSITY >= v) {
-        std::cout << output << std::endl;
-    }
-}
-*/
 void Cerial::println(VerbosityLevel v) {
     if (Flags::VERBOSITY >= v) {
         std::cout << std::endl;
