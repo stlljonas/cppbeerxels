@@ -25,6 +25,7 @@ public:
   cv::Mat computeMask(cv::Mat image);
 
 private:
+  void _drawHoughCircles(cv::Mat image, std::vector<cv::Vec3i> circles);
   void _shiftCenterX(int numberOfPixels);
   void _shiftCenterY(int numberOfPixels);
   void _varyRadius(int numberOfPixels);

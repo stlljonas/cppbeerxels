@@ -1,5 +1,4 @@
 #include "SmartCircle.h"
-#include "helpers.h"
 #include "Cerial.h"
 
 enum UbuntuKeyCodes {
@@ -51,7 +50,7 @@ void SmartCircle::detectCircle(cv::Mat rawImage) {
   cv::HoughCircles(workingImage, circlesFloat, cv::HOUGH_GRADIENT, 1.5, 10, 100,
                    80, 30);
   std::vector<cv::Vec3i> circlesInt = _Vec3i(circlesFloat);
-  drawHoughCircles(workingImage,circlesInt);
+  _drawHoughCircles(workingImage,circlesInt);
   Cerial::print<std::size_t>(circlesInt.size(),DEBUG);
   Cerial::println(" circles detected",DEBUG);
   Cerial::showImage(workingImage,DEBUG);
@@ -111,6 +110,17 @@ cv::Rect SmartCircle::regionOfInterest() {
   cv::Rect boundingRect(x - r, y - r, r * 2 + 1, r * 2 + 1);
   return boundingRect;
 }
+
+void SmartCircle::_drawHoughCircles(cv::Mat image, std::vector<cv::Vec3i> circles) {
+  for (int i = circles.size() - 1; i >= 0; --i) {
+    if (i == 0)
+      cv::circle(image, cv::Point(circles[i][0], circles[i][1]), circles[i][2],
+                 cv::Scalar(255, 255, 225));
+    else
+      cv::circle(image, cv::Point(circles[i][0], circles[i][1]), circles[i][2],
+                 cv::Scalar(0, 0, 255));
+  }
+};
 
 // pass negative or positive integer to specify direction
 void SmartCircle::_shiftCenterX(int numberOfPixels) {
