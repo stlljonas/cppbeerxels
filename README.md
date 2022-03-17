@@ -42,7 +42,9 @@ It is imperative that the executable is run from the project directory, as relat
 
 # Example Result
 
-Given a [reference image of a baboon](https://github.com/stlljonas/cppbeerxels/blob/README/data/reference/baboon.png?raw=true)
+Given a ![reference image of a baboon](https://github.com/stlljonas/cppbeerxels/blob/README/data/reference/baboon.png?raw=true), it can be ![recreated with bottlecaps](https://github.com/stlljonas/cppbeerxels/blob/README/data/baboon-caps.png?raw=true).
+
+Another example where the reference should be evident can be seen ![here](https://github.com/stlljonas/cppbeerxels/blob/README/data/mona-lisa-caps.jpg?raw=true). 
 
 # Architecture
 
