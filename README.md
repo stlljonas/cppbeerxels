@@ -38,6 +38,18 @@ for the compiler to find the library.
 
 This project is interfaced via the command line. 
 
+The following flags are available:
+
+"-v" to set the verbosity, followed by 
+- "q": quiet
+- "n": normal (default)
+- "v": verbose
+- "d": debug
+
+"-d" to display images as they are being processed (has some cool animations!)
+
+"-t" for manual tuning of the cap cutouts (experimental)
+
 It is imperative that the executable is run from the project directory, as relative paths are used to access the images in the data directory.
 
 # Example Result
