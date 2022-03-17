@@ -46,6 +46,7 @@ It is imperative that the executable is run from the project directory, as relat
 
 ![here](https://github.com/stlljonas/cppbeerxels/blob/README/data/mona-lisa-caps.jpg?raw=true) 
 
+A real world recreation is work in progress and will be shared here as well.
 # Architecture
 
 Dependency Diagram:
@@ -68,4 +69,8 @@ SmartCircle <----
   OpenCV
 </pre>
 
-# Contact
+# Current issues
+
+The reflections in the bottle cap images likely distort their actual color, questioning how well the computational results translate into the real world. Possible solutions to this may be softer light sources or possibly scanning the bottle caps (here reflections would again have to be mitigated).
+
+The tuning option relies on key codes returned by openCV, which seem to differ between machines. Further investigation is required. 
