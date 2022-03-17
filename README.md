@@ -6,11 +6,10 @@ This program takes in a number of pictures of bottlecaps (or any other circular 
 
 I have been collecting bottle caps over the past few years and wanted to create art with it. 
 
-This project is developed on Linux (Ubuntu 20.04) and compiled with gcc 9.3.0 exclusively.
-
-If you are on a different operating system: Proceed at your own risk.
 
 # Installation
+
+This project is developed on Linux (Ubuntu 20.04) and compiled with gcc 9.3.0 exclusively. If you are on a different operating system: Proceed at your own risk.
 
 You can use the precompiled binary or compile yourself.
 For local compilation, go to the project directory and first run
@@ -39,12 +38,27 @@ for the compiler to find the library.
 
 This project is interfaced via the command line. 
 
+The following flags are available:
+
+"-v" to set the verbosity, followed by 
+- "q": quiet
+- "n": normal (default)
+- "v": verbose
+- "d": debug
+
+"-d" to display images as they are being processed (has some cool animations!)
+
+"-t" for manual tuning of the cap cutouts (experimental)
+
 It is imperative that the executable is run from the project directory, as relative paths are used to access the images in the data directory.
 
 # Example Result
 
+![reference image of a baboon](https://github.com/stlljonas/cppbeerxels/blob/README/data/reference/baboon.png?raw=true) ![recreated with bottlecaps](https://github.com/stlljonas/cppbeerxels/blob/README/data/baboon-caps.png?raw=true)
 
+![here](https://github.com/stlljonas/cppbeerxels/blob/README/data/mona-lisa-caps.jpg?raw=true) 
 
+A real world recreation is work in progress and will be shared here as well.
 # Architecture
 
 Dependency Diagram:
@@ -67,4 +81,8 @@ SmartCircle <----
   OpenCV
 </pre>
 
-# Contact
+# Current issues
+
+The reflections in the bottle cap images likely distort their actual color, questioning how well the computational results translate into the real world. Possible solutions to this may be softer light sources or possibly scanning the bottle caps (here reflections would again have to be mitigated).
+
+The tuning option relies on key codes returned by openCV, which seem to differ between machines. Further investigation is required. 
