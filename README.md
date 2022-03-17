@@ -6,11 +6,10 @@ This program takes in a number of pictures of bottlecaps (or any other circular 
 
 I have been collecting bottle caps over the past few years and wanted to create art with it. 
 
-This project is developed on Linux (Ubuntu 20.04) and compiled with gcc 9.3.0 exclusively.
-
-If you are on a different operating system: Proceed at your own risk.
 
 # Installation
+
+This project is developed on Linux (Ubuntu 20.04) and compiled with gcc 9.3.0 exclusively. If you are on a different operating system: Proceed at your own risk.
 
 You can use the precompiled binary or compile yourself.
 For local compilation, go to the project directory and first run
@@ -43,7 +42,7 @@ It is imperative that the executable is run from the project directory, as relat
 
 # Example Result
 
-
+Given a [reference image of a baboon](https://github.com/stlljonas/cppbeerxels/blob/README/data/reference/baboon.png?raw=true)
 
 # Architecture
 
