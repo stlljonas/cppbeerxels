@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.4.28)  29 APR 2022 01:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.4.28)  29 APR 2022 18:24
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -230,24 +230,24 @@ File: l3backend-pdftex.def 2022-04-20 L3 backend support: PDF output (pdfTeX)
 ) (./cppbeerxels.aux)
 \openout1 = `cppbeerxels.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
  (/usr/local/texlive/2022/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count286
@@ -273,7 +273,7 @@ File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package color Info: Driver file: pdftex.def on input line 149.
 )
-Package hyperref Info: Link coloring ON on input line 22.
+Package hyperref Info: Link coloring ON on input line 21.
  (/usr/local/texlive/2022/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
  (/usr/local/texlive/2022/texmf-dist/tex/latex/refcount/refcount.sty
@@ -283,9 +283,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count292
 )
-LaTeX Info: Redefining \ref on input line 22.
-LaTeX Info: Redefining \pageref on input line 22.
-LaTeX Info: Redefining \nameref on input line 22.
+LaTeX Info: Redefining \ref on input line 21.
+LaTeX Info: Redefining \pageref on input line 21.
+LaTeX Info: Redefining \nameref on input line 21.
  (./cppbeerxels.out) (./cppbeerxels.out)
 \@outlinefile=\write3
 \openout3 = `cppbeerxels.out'.
@@ -295,7 +295,7 @@ Package caption Info: End \AtBeginDocument code.
 <caps_pics-circles.jpg, id=48, 1003.75pt x 865.2325pt>
 File: caps_pics-circles.jpg Graphic file (type jpg)
 <use caps_pics-circles.jpg>
-Package pdftex.def Info: caps_pics-circles.jpg  used on input line 27.
+Package pdftex.def Info: caps_pics-circles.jpg  used on input line 26.
 (pdftex.def)             Requested size: 276.00105pt x 237.90666pt.
  [1
 
@@ -303,7 +303,7 @@ Package pdftex.def Info: caps_pics-circles.jpg  used on input line 27.
 <cap_raw.png, id=57, 2279.51625pt x 1865.97125pt>
 File: cap_raw.png Graphic file (type png)
 <use cap_raw.png>
-Package pdftex.def Info: cap_raw.png  used on input line 43.
+Package pdftex.def Info: cap_raw.png  used on input line 42.
 (pdftex.def)             Requested size: 172.5pt x 141.19458pt.
 
 
@@ -323,34 +323,34 @@ l.60
 <cap_cutout_white_2.png, id=66, 111.41624pt x 111.41624pt>
 File: cap_cutout_white_2.png Graphic file (type png)
 <use cap_cutout_white_2.png>
-Package pdftex.def Info: cap_cutout_white_2.png  used on input line 66.
+Package pdftex.def Info: cap_cutout_white_2.png  used on input line 65.
 (pdftex.def)             Requested size: 103.50105pt x 103.50212pt.
  [2 <./cap_raw.png> <./cap_hough.png>] [3 <./cap_cutout_white_2.png>]
-<optimal_tiling.png, id=97, 1003.75pt x 1001.7425pt>
+<optimal_tiling.png, id=96, 1003.75pt x 1001.7425pt>
 File: optimal_tiling.png Graphic file (type png)
 <use optimal_tiling.png>
-Package pdftex.def Info: optimal_tiling.png  used on input line 113.
+Package pdftex.def Info: optimal_tiling.png  used on input line 112.
 (pdftex.def)             Requested size: 137.9979pt x 137.7209pt.
  [4 <./optimal_tiling.png (PNG copy)>]
 <mona-lisa.jpg, id=112, 1003.75pt x 1001.7425pt>
 File: mona-lisa.jpg Graphic file (type jpg)
 <use mona-lisa.jpg>
-Package pdftex.def Info: mona-lisa.jpg  used on input line 139.
+Package pdftex.def Info: mona-lisa.jpg  used on input line 138.
 (pdftex.def)             Requested size: 103.50105pt x 103.28304pt.
 
-Underfull \hbox (badness 3118) in paragraph at lines 140--140
+Underfull \hbox (badness 3118) in paragraph at lines 139--139
 []\OT1/cmr/m/n/9 (a) |A mod-er-ately well
  []
 
 <mona-lisa-caps-white.jpg, id=113, 1003.75pt x 1001.7425pt>
 File: mona-lisa-caps-white.jpg Graphic file (type jpg)
 <use mona-lisa-caps-white.jpg>
-Package pdftex.def Info: mona-lisa-caps-white.jpg  used on input line 146.
+Package pdftex.def Info: mona-lisa-caps-white.jpg  used on input line 145.
 (pdftex.def)             Requested size: 103.50105pt x 103.28304pt.
 <mona-lisa-caps-real.jpg, id=114, 2152.04pt x 2168.1pt>
 File: mona-lisa-caps-real.jpg Graphic file (type jpg)
 <use mona-lisa-caps-real.jpg>
-Package pdftex.def Info: mona-lisa-caps-real.jpg  used on input line 153.
+Package pdftex.def Info: mona-lisa-caps-real.jpg  used on input line 152.
 (pdftex.def)             Requested size: 103.50105pt x 104.24295pt.
 [5 <./mona-lisa.jpg> <./mona-lisa-caps-white.jpg> <./mona-lisa-caps-real.jpg>] (./cppbeerxels.bbl) [6] (./cppbeerxels.aux)
 Package rerunfilecheck Info: File `cppbeerxels.out' has not changed.
@@ -359,16 +359,34 @@ Package rerunfilecheck Info: File `cppbeerxels.out' has not changed.
 Here is how much of TeX's memory you used:
  10385 strings out of 478233
  169273 string characters out of 5843844
- 461303 words of memory out of 5000000
+ 461310 words of memory out of 5000000
  28472 multiletter control sequences out of 15000+600000
  477736 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 60i,11n,63p,599b,518s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 60i,11n,63p,600b,518s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on cppbeerxels.pdf (7 pages, 10862736 bytes).
+Output written on cppbeerxels.pdf (7 pages, 10863017 bytes).
 PDF statistics:
- 201 PDF objects out of 1000 (max. 8388607)
- 150 compressed objects within 2 object streams
+ 200 PDF objects out of 1000 (max. 8388607)
+ 149 compressed objects within 2 object streams
  31 named destinations out of 1000 (max. 500000)
  129 words of extra memory for PDF output out of 10000 (max. 10000000)
+
+unfilecheck)             After:  D7DCF8468469AA172519B93300E5C5EB;1241.
+ ) 
+Here is how much of TeX's memory you used:
+ 10373 strings out of 478233
+ 169110 string characters out of 5843844
+ 459785 words of memory out of 5000000
+ 28460 multiletter control sequences out of 15000+600000
+ 477736 words of font info for 57 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 60i,11n,63p,600b,518s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on cppbeerxels.pdf (7 pages, 10861646 bytes).
+PDF statistics:
+ 146 PDF objects out of 1000 (max. 8388607)
+ 100 compressed objects within 1 object stream
+ 31 named destinations out of 1000 (max. 500000)
+ 41 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex cppbeerxels"] 1651187847 "cppbeerxels.aux" "cppbeerxels.bbl" "cppbeerxels" 1651187849
+["bibtex cppbeerxels"] 1651249494 "cppbeerxels.aux" "cppbeerxels.bbl" "cppbeerxels" 1651249496
   "/usr/local/texlive/2022/texmf-dist/bibtex/bst/base/abbrv.bst" 1292289607 20329 b5fed53e10044d0f8112183785c759b1 ""
-  "cppbeerxels.aux" 1651187849 5005 72d208b448d8495e1cceb5445302fd92 "pdflatex"
+  "cppbeerxels.aux" 1651249496 5021 f4085529dc0604e5acdc2cdb7ef1a70c "pdflatex"
   "refs.bib" 1651177411 1751 83b2073763d222c10b4abde349f53bb6 ""
   (generated)
   "cppbeerxels.bbl"
   "cppbeerxels.blg"
-["pdflatex"] 1651187847 "cppbeerxels.tex" "cppbeerxels.pdf" "cppbeerxels" 1651187849
+["pdflatex"] 1651249494 "cppbeerxels.tex" "cppbeerxels.pdf" "cppbeerxels" 1651249496
   "/usr/local/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy5.tfm" 1246382020 1120 1e8878807317373affa7f7bba4cf2f6a ""
   "/usr/local/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy7.tfm" 1246382020 1120 7f9f170e8aa57527ad6c49feafd45d54 ""
@@ -107,10 +107,10 @@
   "cap_hough.png" 1651156065 85427 488e950508e422bc9ff600ebe6fa4729 ""
   "cap_raw.png" 1651155952 2416707 12b955c66961403c4ddfa52ac8970fa3 ""
   "caps_pics-circles.jpg" 1651179998 302775 15e43345ece096b8a2b9e320397dda4a ""
-  "cppbeerxels.aux" 1651187849 5005 72d208b448d8495e1cceb5445302fd92 "pdflatex"
-  "cppbeerxels.bbl" 1651187847 406 a8fb30e11056ad0150db5baef902c5ab "bibtex cppbeerxels"
-  "cppbeerxels.out" 1651187849 1241 d7dcf8468469aa172519b93300e5c5eb "pdflatex"
-  "cppbeerxels.tex" 1651187843 11545 3611dcb633cca6d073f18b8264c70417 ""
+  "cppbeerxels.aux" 1651249496 5021 f4085529dc0604e5acdc2cdb7ef1a70c "pdflatex"
+  "cppbeerxels.bbl" 1651249494 406 a8fb30e11056ad0150db5baef902c5ab "bibtex cppbeerxels"
+  "cppbeerxels.out" 1651249496 1241 d7dcf8468469aa172519b93300e5c5eb "pdflatex"
+  "cppbeerxels.tex" 1651249488 11840 fcd55ec92257e0bfb2f974ae4cd3c268 ""
   "mona-lisa-caps-real.jpg" 1651159231 5546394 7a9b8d352982a738668656612a24c581 ""
   "mona-lisa-caps-white.jpg" 1651179410 814181 934d810dc0116033e15e3382105cb460 ""
   "mona-lisa.jpg" 1651090844 285138 894ba240d7f516836ab82cfccbe7dd98 ""
