@@ -1,0 +1,13 @@
+\begin{thebibliography}{1}
+
+\bibitem{DAVIES198837}
+E.~Davies.
+\newblock A modified hough scheme for general circle location.
+\newblock {\em Pattern Recognition Letters}, 7(1):37--43, 1988.
+
+\bibitem{https://doi.org/10.1002/nav.3800020109}
+H.~W. Kuhn.
+\newblock The hungarian method for the assignment problem.
+\newblock {\em Naval Research Logistics Quarterly}, 2(1-2):83--97, 1955.
+
+\end{thebibliography}
